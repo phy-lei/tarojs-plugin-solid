@@ -1,8 +1,7 @@
 import { createRenderer } from 'solid-js/universal'
 import { document, TaroElement, TaroNode, TaroText } from '@tarojs/runtime'
-// import { setProperty } from './utils'
+import { setProperty } from './utils'
 import { h } from './h'
-const PROPERTIES = new Set(["className", "textContent"]);
 export const {
   render,
   effect,
@@ -27,11 +26,8 @@ export const {
     textNode.textContent = value
   },
   setProperty(node: TaroElement, name: string, value, prev) {
-    if (name === "style") Object.assign(node.style, value);
-    else if (name.startsWith("on")) node[name.toLowerCase()] = value;
-    else if (PROPERTIES.has(name)) node[name] = value;
-    else node.setAttribute(name, value);
-    // setProperty(node, name, value, prev)
+
+    setProperty(node, name, value, prev)
   },
   insertNode(parent, node, anchor) {
     parent.insertBefore(node, anchor)

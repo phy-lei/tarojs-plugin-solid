@@ -1,31 +1,25 @@
 import {
-    AppInstance,
     Current,
     document,
-    getPageInstance,
     injectPageInstance,
     Instance,
-    PageLifeCycle,
     PageProps,
-    ReactAppInstance,
     TaroNode,
 } from "@tarojs/runtime";
-import type { AppConfig } from "@tarojs/taro";
 import { For } from "solid-js";
 import { installGlobalShims } from './dom'
 import { createComponent, render, h } from "../custom-render";
+import { hooks } from '@tarojs/shared'
 
-const { hooks } = require('@tarojs/shared')
 
 installGlobalShims()
 
 const [ONLAUNCH, ONSHOW, ONHIDE] = hooks.call('getMiniLifecycleImpl').app
 
-let container: HTMLDivElement = null
 
 type Component = (props?: any) => TaroNode;
 
-export function createSolidApp(app: Component, config: AppConfig) {
+export function createSolidApp(app, config) {
     const pages = new Map()
 
     const AppWrapper = () => {
@@ -84,11 +78,6 @@ export function createSolidApp(app: Component, config: AppConfig) {
         },
 
         [ONLAUNCH](options) {
-            if (process.env.TARO_ENV === 'h5') {
-                const appId = config?.appId || 'app'
-                container = document.getElementById(appId)
-            }
-
             app?.onLaunch?.(options)
         },
 

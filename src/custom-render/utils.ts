@@ -31,9 +31,9 @@ export function setProperty(
         continue
       }
       if (map[key]) {
-        dom.classList.add(key)
+        (dom as any).classList.add(key)
       } else {
-        dom.classList.remove(key)
+        (dom as any).classList.remove(key)
       }
     }
   } else if (isEventName(name)) {
