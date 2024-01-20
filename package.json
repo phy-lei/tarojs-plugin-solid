@@ -4,7 +4,7 @@
   "description": "taro插件，支持使用 Solid 开发小程序",
   "main": "dist/index.js",
   "workspaces": [
-    "packages/*"
+    "packages/**"
   ],
   "type": "module",
   "scripts": {

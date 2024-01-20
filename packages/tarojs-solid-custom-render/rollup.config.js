@@ -20,7 +20,7 @@ const base = {
 
 // Solid custom render
 const customRenderConfig = {
-  input: path.join(__dirname, 'src/custom-render/index.ts'),
+  input: path.join(__dirname, 'index.ts'),
   output: {
     file: path.join(__dirname, 'dist/custom-render.js'),
     format: 'cjs',
