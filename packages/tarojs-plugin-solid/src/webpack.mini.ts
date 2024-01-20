@@ -1,4 +1,4 @@
-import { getLoaderMeta } from './loader-meta'
+import { getLoaderMeta } from '../loader-meta'
 
 export function modifyMiniWebpackChain(chain) {
     chain.plugin('miniPlugin')

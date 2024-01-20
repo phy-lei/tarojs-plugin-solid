@@ -12,6 +12,7 @@ const base = {
       include: [
         '@tarojs/runtime',
         '@tarojs/shared',
+        '@tarojs/service',
       ],
     }),
     ts(),
@@ -20,7 +21,7 @@ const base = {
 
 // 供 CLI 编译时使用的 Taro 插件入口
 const compileConfig = {
-  input: path.join(__dirname, 'index.ts'),
+  input: path.join(__dirname, 'src/index.ts'),
   output: {
     file: path.join(__dirname, 'dist/index.js'),
     format: 'cjs',
@@ -32,7 +33,7 @@ const compileConfig = {
 
 // 供 Loader 使用的运行时入口
 const runtimeConfig = {
-  input: path.join(__dirname, 'runtime/index.ts'),
+  input: path.join(__dirname, 'src/runtime/index.ts'),
   output: {
     file: path.join(__dirname, 'dist/runtime.js'),
     format: 'es',
@@ -43,7 +44,7 @@ const runtimeConfig = {
 
 // Solid Loader
 const loaderConfig = {
-  input: path.join(__dirname, 'api-loader.ts'),
+  input: path.join(__dirname, 'src/api-loader.ts'),
   output: {
     file: path.join(__dirname, 'dist/api-loader.js'),
     format: 'cjs',

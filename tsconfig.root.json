@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "CommonJS",
-    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -13,8 +10,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "target": "ES6",
-    "lib": ["DOM"]
   },
-  "include": ["packages/*"],
   "exclude": ["node_modules"]
 }

@@ -10,12 +10,24 @@ const base = {
     nodeResolve(),
     externals({
       include: [
+        'solid-js',
         '@tarojs/runtime',
         '@tarojs/shared',
       ],
     }),
     ts(),
   ],
+};
+
+
+const esmConfig = {
+  input: path.join(__dirname, 'index.ts'),
+  output: {
+    file: path.join(__dirname, 'dist/custom-render.esm.js'),
+    format: 'es',
+    sourcemap: true,
+  },
+  ...base,
 };
 
 // Solid custom render
@@ -30,4 +42,4 @@ const customRenderConfig = {
   ...base,
 };
 
-export default [customRenderConfig];
+export default [customRenderConfig, esmConfig];

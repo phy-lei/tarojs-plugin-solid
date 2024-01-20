@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "自定义solid编译器",
   "main": "dist/index.js",
+  "module": "dist/solid.esm.js",
   "files": [
     "dist"
   ],
@@ -55,7 +56,6 @@
     "rollup": "^4.9.5",
     "rollup-plugin-node-externals": "^4.0.0",
     "rollup-plugin-ts": "^3.4.5",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
+    "ts-jest": "^29.1.1"
   }
 }
