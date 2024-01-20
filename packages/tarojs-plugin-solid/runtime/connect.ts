@@ -8,7 +8,7 @@ import {
 } from "@tarojs/runtime";
 import { For } from "solid-js";
 import { installGlobalShims } from './dom'
-import { createComponent, render, h } from "../custom-render";
+import { createComponent, render, h } from "tarojs-solid-custom-render"
 import { hooks } from '@tarojs/shared'
 
 

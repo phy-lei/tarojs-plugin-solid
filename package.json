@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "description": "taro插件，支持使用 Solid 开发小程序",
   "main": "dist/index.js",
-  "type": "module",
-  "files": [
-    "dist"
+  "workspaces": [
+    "packages/*"
   ],
+  "type": "module",
   "scripts": {
-    "dev": "rollup -c -w --bundleConfigAsCjs",
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "jest"
+    "dev-all": "pnpm run dev --parallel --filter ./packages/",
+    "build-all": "pnpm run dev --parallel --filter ./packages/",
   },
   "repository": {
     "type": "git",
@@ -29,13 +28,6 @@
     "url": "https://github.com/phy-lei/tarojs-plugin-solid/issues"
   },
   "homepage": "https://github.com/phy-lei/tarojs-plugin-solid#readme",
-  "peerDependencies": {
-    "@tarojs/runtime": ">=3.0.0",
-    "@tarojs/service": ">=3.0.0",
-    "@tarojs/shared": ">=3.0.0",
-    "@tarojs/webpack5-runner": ">=3.0.0",
-    "solid-js": ">=1"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
@@ -43,23 +35,5 @@
   "volta": {
     "node": "18.17.1",
     "npm": "9.6.7"
-  },
-  "dependencies": {
-    "solid-js": "^1.8.11"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@tarojs/runtime": "^3.6.23",
-    "@tarojs/service": "^3.6.23",
-    "@tarojs/shared": "^3.6.23",
-    "@tarojs/webpack5-runner": "^3.6.23",
-    "@types/jest": "^29.5.11",
-    "jest": "^29.7.0",
-    "rollup": "^4.9.5",
-    "rollup-plugin-node-externals": "^4.0.0",
-    "rollup-plugin-ts": "^3.4.5",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
   }
 }

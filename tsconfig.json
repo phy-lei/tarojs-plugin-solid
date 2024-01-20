@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib",
     "module": "CommonJS",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
@@ -16,5 +15,6 @@
     "target": "ES6",
     "lib": ["DOM"]
   },
-  "include": ["src"]
+  "include": ["packages/*"],
+  "exclude": ["node_modules"]
 }
