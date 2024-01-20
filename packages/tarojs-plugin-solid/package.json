@@ -6,7 +6,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "type": "module",
   "files": [
     "index.js",
     "dist"

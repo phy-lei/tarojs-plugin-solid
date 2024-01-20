@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "example",
-  "description": "使用 Svelte 开发小程序",
+  "projectname": "taro-react",
+  "description": "",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "example",
+  "projectname": "taro-react",
   "appid": "testAppId",
   "setting": {
     "es6": false,

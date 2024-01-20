@@ -2,11 +2,9 @@
   "name": "tarojs-plugin-solid",
   "version": "0.0.1",
   "description": "taro插件，支持使用 Solid 开发小程序",
-  "main": "dist/index.js",
   "workspaces": [
     "packages/**"
   ],
-  "type": "module",
   "scripts": {
     "dev": "pnpm -r --filter=./packages/* run dev",
     "build": "pnpm -r --filter=./packages/* run build"
