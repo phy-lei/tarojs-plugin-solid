@@ -1,5 +1,5 @@
 {
-  "name": "taro-react",
+  "name": "taro-solid",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -9,6 +9,7 @@
     "css": "None",
     "framework": "React"
   },
+
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -56,7 +57,9 @@
     "@tarojs/plugin-framework-react": "3.6.23",
     "@tarojs/react": "3.6.23",
     "react-dom": "^18.0.0",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "tarojs-plugin-solid": "workspace:*",
+    "solid-js": "^1.8.11"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
@@ -67,6 +70,7 @@
     "webpack": "5.78.0",
     "@tarojs/taro-loader": "3.6.23",
     "@tarojs/webpack5-runner": "3.6.23",
+    "babel-preset-solid": "^1.8.9",
     "babel-preset-taro": "3.6.23",
     "eslint-config-taro": "3.6.23",
     "eslint": "^8.12.0",

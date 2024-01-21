@@ -1,67 +1,69 @@
-import type { IPluginContext } from '@tarojs/service'
-import { modifyH5WebpackChain } from './webpack.h5'
-import { modifyMiniWebpackChain } from './webpack.mini'
+import { fs } from "@tarojs/helper";
+import type { IPluginContext } from "@tarojs/service";
+import { isString } from "@tarojs/shared";
 
-try {
-    const configSchema = require('@tarojs/cli/dist/doctor/configSchema')
-    const Joi = require('joi')
+import { modifyH5WebpackChain } from "./webpack.h5";
+import { modifyMiniWebpackChain } from "./webpack.mini";
 
-    configSchema.default.$_terms.keys.forEach(term => {
-        if (term.key === 'framework') {
-            term.schema = Joi.any().valid('nerv', 'react', 'preact', 'vue', 'vue3', 'solid').required()
-        }
-    })
-} catch {
-    // ignore
-}
+
+export type Frameworks = "solid";
 
 export default (ctx: IPluginContext) => {
-    const { framework } = ctx.initialConfig
-    if ((framework as (typeof framework) | 'solid') !== 'solid') {
-        return
-    }
+    const { framework } = (ctx.initialConfig as any);
+
+    if (framework !== "solid") return;
 
     ctx.modifyWebpackChain(({ chain }) => {
-        chain
-            .plugin('definePlugin')
-            .tap(args => {
-                const config = args[0]
-                config.__TARO_FRAMEWORK__ = `"${framework}"`
-                return args
-            })
+        // 通用
+        chain.plugin("definePlugin").tap((args) => {
+            const config = args[0];
+            config.__TARO_FRAMEWORK__ = `"${framework}"`;
+            return args;
+        });
 
-        if (process.env.TARO_ENV === 'h5') {
-            modifyH5WebpackChain(chain)
+        if (process.env.TARO_ENV === "h5") {
+            // H5
+            modifyH5WebpackChain(chain);
         } else {
-            modifyMiniWebpackChain(chain)
+            // 小程序
+            modifyMiniWebpackChain(chain);
         }
-    })
+    });
 
     ctx.modifyRunnerOpts(({ opts }) => {
-        if (!opts.compiler) {
-            return
-        }
+        if (!opts?.compiler) return;
 
-        if (typeof opts.compiler === 'string') {
+        if (isString(opts.compiler)) {
             opts.compiler = {
-                type: opts.compiler
-            }
+                type: opts.compiler,
+            };
         }
 
-        const { compiler } = opts
-
-        if (compiler.type === 'webpack5') {
+        const { compiler } = opts;
+        if (compiler.type === "webpack5") {
             // 提供给 webpack5 依赖预编译收集器的第三方依赖
-            const deps = ["tarojs-plugin-solid/dist/runtime"]
-            compiler.prebundle ||= {}
-            const prebundleOptions = compiler.prebundle
-            prebundleOptions.include ||= []
+            const deps = ["tarojs-plugin-solid/dist/runtime"];
+            compiler.prebundle ||= {};
+            const prebundleOptions = compiler.prebundle;
+            prebundleOptions.include ||= [];
             prebundleOptions.include = prebundleOptions.include.concat(deps);
-            prebundleOptions.exclude ||= []
 
-            prebundleOptions.esbuild ||= {}
-            const esbuildConfig = prebundleOptions.esbuild
-            esbuildConfig.plugins ||= []
+            const taroSolidPlugin = {
+                name: "taroSolidPlugin",
+                setup(build) {
+                    build.onLoad({ filter: /taro-h5[\\/]dist[\\/]index/ }, ({ path }) => {
+                        const content = fs.readFileSync(path).toString();
+                        return {
+                            contents: require("./api-loader")(content),
+                        };
+                    });
+                },
+            };
+
+            prebundleOptions.esbuild ||= {};
+            const esbuildConfig = prebundleOptions.esbuild;
+            esbuildConfig.plugins ||= [];
+            esbuildConfig.plugins.push(taroSolidPlugin)
         }
-    })
-}
+    });
+};

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "自定义solid编译器",
   "main": "dist/index.js",
-  "module": "dist/solid.esm.js",
+  "module": "dist/custom-render.esm.js",
   "files": [
     "dist"
   ],
@@ -32,8 +32,8 @@
   "peerDependencies": {
     "@tarojs/runtime": ">=3.0.0",
     "@tarojs/shared": ">=3.0.0",
-    "solid-js": ">=1",
-    "babel-preset-solid": ">=1"
+    "babel-preset-solid": ">=1",
+    "solid-js": ">=1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -47,6 +47,7 @@
     "solid-js": "^1.8.11"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^1.0.3",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tarojs/runtime": "^3.6.23",

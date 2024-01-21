@@ -1,45 +1,44 @@
-import * as path from 'path';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { externals } from 'rollup-plugin-node-externals';
-import ts from 'rollup-plugin-ts';
+// import buble from '@rollup/plugin-buble'
+import * as path from 'path'
+import ts from 'rollup-plugin-ts'
 
-const base = {
-  plugins: [
-    commonjs(),
-    nodeResolve(),
-    externals({
-      include: [
-        'solid-js',
-        '@tarojs/runtime',
-        '@tarojs/shared',
-      ],
-    }),
-    ts(),
+const cwd = __dirname
+
+const baseConfig = {
+  input: path.join(cwd, 'index.ts'),
+  output: [
+    {
+      file: path.join(cwd, 'dist/custom-render.js'),
+      format: 'cjs',
+      sourcemap: true,
+      exports: 'named'
+    }
   ],
-};
+  external: ['@tarojs/runtime', 'solid-js', '@tarojs/shared'],
+  plugins: [
+    ts(),
+    // buble()
+  ]
+}
 
-
-const esmConfig = {
-  input: path.join(__dirname, 'index.ts'),
-  output: {
-    file: path.join(__dirname, 'dist/custom-render.esm.js'),
+const esmConfig = Object.assign({}, baseConfig, {
+  output: Object.assign({}, baseConfig.output[0], {
+    sourcemap: true,
     format: 'es',
-    sourcemap: true,
-  },
-  ...base,
-};
+    file: path.join(cwd, 'dist/custom-render.esm.js')
+  }),
+  plugins: baseConfig.plugins.slice(0, baseConfig.plugins.length - 1)
+})
 
-// Solid custom render
-const customRenderConfig = {
-  input: path.join(__dirname, 'index.ts'),
-  output: {
-    file: path.join(__dirname, 'dist/custom-render.js'),
-    format: 'cjs',
-    sourcemap: true,
-    exports: 'named',
-  },
-  ...base,
-};
+function rollup () {
+  const target = process.env.TARGET
 
-export default [customRenderConfig, esmConfig];
+  if (target === 'umd') {
+    return baseConfig
+  } else if (target === 'esm') {
+    return esmConfig
+  } else {
+    return [baseConfig, esmConfig]
+  }
+}
+module.exports = rollup()
