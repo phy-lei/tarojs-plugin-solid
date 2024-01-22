@@ -7,11 +7,11 @@ module.exports = {
       framework: 'solid',
       ts: true,
     }],
-    "@babel/preset-env",
-    "@babel/preset-typescript",
-    ['babel-preset-solid', {
-      moduleName: 'tarojs-solid-custom-render/dist/custom-render.esm',
-      generate: 'universal',
-    }]
+    // "@babel/preset-env",
+    // "@babel/preset-typescript",
+    // ['babel-preset-solid', {
+    //   moduleName: 'tarojs-solid-custom-render/dist/custom-render.esm',
+    //   generate: 'universal',
+    // }]
   ]
 }

@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "rollup -c -w --bundleConfigAsCjs",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "rollup -c",
     "test": "jest"
   },
   "repository": {
@@ -47,7 +47,7 @@
     "solid-js": "^1.8.11"
   },
   "devDependencies": {
-    "@rollup/plugin-buble": "^1.0.3",
+    "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tarojs/runtime": "^3.6.23",

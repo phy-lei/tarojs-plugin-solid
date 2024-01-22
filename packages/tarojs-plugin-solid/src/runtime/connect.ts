@@ -13,7 +13,7 @@ import {
 import { hooks } from "@tarojs/shared";
 import { batch, createSignal, For } from "solid-js";
 
-import { createComponent, render, h } from "tarojs-solid-custom-render/dist/custom-render.esm";
+import { createComponent, render, h } from "tarojs-solid-custom-render";
 import { PageContext } from "./context";
 import {
     ensureIsArray,

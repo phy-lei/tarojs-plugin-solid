@@ -15,18 +15,6 @@ export function modifyMiniWebpackChain(chain) {
     //         plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-object-rest-spread'],
     //     })
 
-    chain.merge({
-        module: {
-            rule: {
-                'solid': {
-                    test: /\.(ts)x?$/,
-                    exclude: /node_modules/,
-                    loader: require.resolve('./api-loader'),
-                },
-            },
-        },
-    })
-
     chain.plugin('miniPlugin')
         .tap(args => {
             args[0].loaderMeta = getLoaderMeta()
