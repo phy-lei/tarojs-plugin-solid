@@ -1,8 +1,8 @@
 import { TaroNode } from '@tarojs/runtime'
 import { createRenderEffect, onCleanup, splitProps, children as solidChildren, Accessor } from 'solid-js'
 import { ResolvedChildren } from 'solid-js/types/reactive/signal'
-import { createElement, createTextNode, effect, insert, insertNode, setProp } from './render'
-
+import * as render from './render'
+const { createElement, createTextNode, effect, insert, insertNode, setProp } = render
 export type Component = (props?: any) => TaroNode
 
 type Children =

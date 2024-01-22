@@ -13,7 +13,7 @@ import {
 import { hooks } from "@tarojs/shared";
 import { batch, createSignal, For } from "solid-js";
 
-import { createComponent, render, h } from "tarojs-solid-custom-render";
+import { createComponent, render, h } from "tarojs-solid-custom-render/dist/custom-render.esm";
 import { PageContext } from "./context";
 import {
     ensureIsArray,
@@ -21,6 +21,8 @@ import {
     setDefaultDescriptor,
     setRouterParams,
 } from "./utils";
+
+// const { createComponent, render, h } = require("tarojs-solid-custom-render/dist/custom-render")
 
 type Component = (props?: any) => TaroNode;
 export function setReconciler() {
@@ -65,6 +67,7 @@ export function setReconciler() {
  * @returns 传递给 App 构造器的对象 obj ：App(obj)
  */
 export function createSolidApp(App: Component, config) {
+    console.log('%c [ App ]', 'font-size:13px; background:pink; color:#bf2c9f;', App);
     setReconciler();
     const [pages, setPages] = createSignal<any[]>([]);
 
@@ -123,6 +126,7 @@ export function createSolidApp(App: Component, config) {
     const appObj: AppInstance = Object.create(
         {
             mount(component: Component, id: string, cb: () => void) {
+                console.log('%c [ component ]', 'font-size:13px; background:pink; color:#bf2c9f;', component);
                 setPages((old) => [
                     ...old,
                     {
