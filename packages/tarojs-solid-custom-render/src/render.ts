@@ -14,7 +14,6 @@ const ref = createRenderer<TaroNode>({
     textNode.textContent = value
   },
   setProperty (node: TaroElement, name: string, value, prev) {
-
     setProperty(node, name, value, prev)
   },
   insertNode (parent, node, anchor) {

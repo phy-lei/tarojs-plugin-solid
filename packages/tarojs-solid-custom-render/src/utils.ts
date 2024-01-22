@@ -3,6 +3,7 @@ import {
   capitalize,
   internalComponents,
   isFunction,
+  isObject,
   toCamelCase,
 } from '@tarojs/shared'
 
@@ -50,6 +51,13 @@ export function setProperty (
     if (value == null) {
       dom.removeAttribute(name)
     } else {
+      // 处理对象类型的style样式
+      if (name === 'style' && isObject(value)) {
+        value = Object.keys(value).reduce((acc, key) => {
+          acc.push(`${key}: ${value[key]}`)
+          return acc
+        }, []).join(';')
+      }
       dom.setAttribute(name, value as string)
     }
   }
