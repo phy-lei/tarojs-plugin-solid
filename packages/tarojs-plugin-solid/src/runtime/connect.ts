@@ -67,7 +67,6 @@ export function setReconciler() {
  * @returns 传递给 App 构造器的对象 obj ：App(obj)
  */
 export function createSolidApp(App: Component, config) {
-    console.log('%c [ App ]', 'font-size:13px; background:pink; color:#bf2c9f;', App);
     setReconciler();
     const [pages, setPages] = createSignal<any[]>([]);
 
@@ -78,6 +77,7 @@ export function createSolidApp(App: Component, config) {
 
     const AppWrapper = () => {
         appRef = {} as unknown as ReactAppInstance;
+        (App as any).mount = () => { }
         return createComponent(App, {
             children: createComponent(For as unknown as Component, {
                 get each() {
@@ -97,7 +97,6 @@ export function createSolidApp(App: Component, config) {
                                 });
                             },
                         });
-
                     if (process.env.TARO_ENV === "h5") {
                         return h("div", { id, className: "taro_page" }, children);
                     } else {
@@ -114,7 +113,7 @@ export function createSolidApp(App: Component, config) {
             appId = config?.appId || appId;
         }
         const container = document.getElementById(appId);
-        render(AppWrapper, container);
+        render(AppWrapper(), container);
     }
 
     if (process.env.TARO_ENV !== "h5") {
@@ -125,8 +124,7 @@ export function createSolidApp(App: Component, config) {
 
     const appObj: AppInstance = Object.create(
         {
-            mount(component: Component, id: string, cb: () => void) {
-                console.log('%c [ component ]', 'font-size:13px; background:pink; color:#bf2c9f;', component);
+            mount(component: any, id: string, cb: () => void) {
                 setPages((old) => [
                     ...old,
                     {

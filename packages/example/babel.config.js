@@ -2,22 +2,20 @@
 // https://github.com/NervJS/taro/blob/next/packages/babel-preset-taro/README.md
 module.exports = {
   presets: [
-    "babel-preset-solid",
-    // [
-    //   "babel-preset-solid",
-    //   {
-    //     moduleName: "tarojs-solid-custom-render/dist/custom-render.esm",
-    //     generate: "universal",
-    //   },
-    // ],
     [
       "taro",
       {
-        framework: "solid",
+        framework: "react",
         ts: true,
       },
     ],
-    // "@babel/preset-env",
-    // "@babel/preset-typescript",
+    // 设置自定义custom-render编译
+    [
+      "babel-preset-solid",
+      {
+        moduleName: "tarojs-solid-custom-render/dist/custom-render.esm",
+        generate: "universal",
+      },
+    ],
   ],
 };
