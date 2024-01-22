@@ -1,0 +1,26 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/__snapshots__": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "files.associations": {
+    "*.json": "jsonc"
+  }
+}

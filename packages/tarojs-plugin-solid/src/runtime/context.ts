@@ -1,3 +1,3 @@
-import { createContext } from "solid-js";
+import { createContext } from 'solid-js'
 
-export const PageContext = createContext<string>();
+export const PageContext = createContext<string>()

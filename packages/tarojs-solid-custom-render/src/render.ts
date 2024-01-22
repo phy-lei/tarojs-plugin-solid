@@ -4,38 +4,38 @@ import { setProperty } from './utils'
 import { h } from './h'
 
 const ref = createRenderer<TaroNode>({
-  createElement(type: string) {
+  createElement (type: string) {
     return document.createElement(type)
   },
-  createTextNode(text) {
+  createTextNode (text) {
     return document.createTextNode(text)
   },
-  replaceText(textNode: TaroText, value) {
+  replaceText (textNode: TaroText, value) {
     textNode.textContent = value
   },
-  setProperty(node: TaroElement, name: string, value, prev) {
+  setProperty (node: TaroElement, name: string, value, prev) {
 
     setProperty(node, name, value, prev)
   },
-  insertNode(parent, node, anchor) {
+  insertNode (parent, node, anchor) {
     parent.insertBefore(node, anchor)
   },
-  isTextNode(node: TaroNode) {
+  isTextNode (node: TaroNode) {
     if (typeof node === 'string') {
       return true
     }
     return node instanceof TaroText
   },
-  removeNode(parent: TaroElement, node: TaroElement) {
+  removeNode (parent: TaroElement, node: TaroElement) {
     parent.removeChild(node)
   },
-  getParentNode(node: TaroNode) {
+  getParentNode (node: TaroNode) {
     return node.parentNode || undefined
   },
-  getFirstChild(node: TaroElement) {
+  getFirstChild (node: TaroElement) {
     return node.firstChild || undefined
   },
-  getNextSibling(node: TaroElement) {
+  getNextSibling (node: TaroElement) {
     return node.nextSibling || undefined
   },
 })

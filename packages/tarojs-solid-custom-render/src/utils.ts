@@ -11,11 +11,11 @@ interface DangerouslySetInnerHTML {
 }
 type ClassList = { [key: string]: boolean };
 
-function isEventName(s: string) {
+function isEventName (s: string) {
   return s.startsWith('on')
 }
 
-export function setProperty(
+export function setProperty (
   dom: TaroElement,
   name: string,
   value: any,
@@ -55,7 +55,7 @@ export function setProperty(
   }
 }
 
-function diffClassList(newVal: ClassList, oldVal: ClassList) {
+function diffClassList (newVal: ClassList, oldVal: ClassList) {
   const result: ClassList = {}
   for (const key in oldVal) {
     if (newVal[key] !== oldVal[key]) {
@@ -71,7 +71,7 @@ function diffClassList(newVal: ClassList, oldVal: ClassList) {
   return result
 }
 
-function setEvent(
+function setEvent (
   dom: TaroElement,
   name: string,
   value: unknown,

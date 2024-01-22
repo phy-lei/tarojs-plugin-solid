@@ -3,18 +3,18 @@
 
 
 interface ILoaderMeta {
-  importFrameworkStatement: string;
-  mockAppStatement: string;
-  frameworkArgs: string;
-  creator: string;
-  creatorLocation: string;
-  importFrameworkName: string;
-  isNeedRawLoader?: boolean;
-  extraImportForWeb?: string;
-  execBeforeCreateWebApp?: string;
-  compatComponentImport?: string;
-  compatComponentExtra?: string;
-  modifyConfig?: (config: Record<string, any>, source: string) => void;
+  importFrameworkStatement: string
+  mockAppStatement: string
+  frameworkArgs: string
+  creator: string
+  creatorLocation: string
+  importFrameworkName: string
+  isNeedRawLoader?: boolean
+  extraImportForWeb?: string
+  execBeforeCreateWebApp?: string
+  compatComponentImport?: string
+  compatComponentExtra?: string
+  modifyConfig?: (config: Record<string, any>, source: string) => void
 }
 
 // function addConfig(source) {
@@ -71,16 +71,16 @@ interface ILoaderMeta {
 
 
 
-export function getLoaderMeta(): ILoaderMeta {
+export function getLoaderMeta (): ILoaderMeta {
   return {
     importFrameworkStatement: ``,
     mockAppStatement: ``,
-    frameworkArgs: "config",
-    creator: "createSolidApp",
-    creatorLocation: "tarojs-plugin-solid/dist/runtime",
-    importFrameworkName: "",
-    compatComponentImport: "",
-    compatComponentExtra: "",
+    frameworkArgs: 'config',
+    creator: 'createSolidApp',
+    creatorLocation: 'tarojs-plugin-solid/dist/runtime',
+    importFrameworkName: '',
+    compatComponentImport: '',
+    compatComponentExtra: '',
     // modifyConfig(config, source) {
     //   Object.assign(config, addConfig(source));
     // },

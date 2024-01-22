@@ -2,6 +2,7 @@ import { TaroNode } from '@tarojs/runtime'
 import { createRenderEffect, onCleanup, splitProps, children as solidChildren, Accessor } from 'solid-js'
 import { ResolvedChildren } from 'solid-js/types/reactive/signal'
 import { createElement, createTextNode, effect, insert, insertNode, setProp } from './render'
+
 export type Component = (props?: any) => TaroNode
 
 type Children =
@@ -15,7 +16,7 @@ type Children =
   | Accessor<ResolvedChildren>
   | (() => Component[])
 
-export function h(com: string, props?: any, children?: Children) {
+export function h (com: string, props?: any, children?: Children) {
   if (typeof com !== 'string') {
     throw Error(`h function cant create ele for ${com}`)
   }
@@ -48,7 +49,7 @@ export function h(com: string, props?: any, children?: Children) {
   return ele
 }
 
-function setProps(ele: TaroNode, otherProps) {
+function setProps (ele: TaroNode, otherProps) {
   const desc = Object.getOwnPropertyDescriptors(otherProps)
   const plain_keys = Object.keys(desc).filter((key) => {
     if (desc[key].get) {
@@ -85,7 +86,7 @@ function setProps(ele: TaroNode, otherProps) {
   }
 }
 
-function insertNodes(parent: TaroNode, children: Children) {
+function insertNodes (parent: TaroNode, children: Children) {
   if (children === undefined) {
     return
   }
