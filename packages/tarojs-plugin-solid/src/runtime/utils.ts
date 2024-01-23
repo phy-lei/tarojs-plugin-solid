@@ -1,7 +1,6 @@
 import { Current } from '@tarojs/runtime'
 import { isArray } from '@tarojs/shared'
 
-export const HOOKS_APP_ID = 'taro-app'
 
 export function ensureIsArray<T> (item: T | T[]): T[] {
   if (isArray(item)) {

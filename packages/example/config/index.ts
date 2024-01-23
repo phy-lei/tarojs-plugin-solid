@@ -17,7 +17,7 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: ['tarojs-plugin-solid/dist/index'],
+    plugins: ['tarojs-plugin-solid'],
     defineConstants: {
     },
     copy: {
@@ -53,7 +53,7 @@ export default defineConfig(async (merge, { command, mode }) => {
           }
         }
       },
-      webpackChain(chain) {
+      webpackChain (chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
       }
     },
@@ -82,7 +82,7 @@ export default defineConfig(async (merge, { command, mode }) => {
           }
         }
       },
-      webpackChain(chain) {
+      webpackChain (chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
       }
     },
