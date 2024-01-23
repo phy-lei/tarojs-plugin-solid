@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "rollup -c -w --bundleConfigAsCjs",
     "build": "rollup -c --bundleConfigAsCjs",
+    "build-in-plugin": "rollup -c --bundleConfigAsCjs all_in_one",
     "test": "jest"
   },
   "repository": {
