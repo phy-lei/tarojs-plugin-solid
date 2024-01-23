@@ -227,16 +227,16 @@ importers:
         specifier: ^15.2.3
         version: 15.2.3(rollup@4.9.5)
       '@tarojs/helper':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23
       '@tarojs/runtime':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23(@tarojs/shared@3.6.23)
       '@tarojs/service':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23)
       '@tarojs/shared':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23
       '@types/jest':
         specifier: ^29.5.11
@@ -279,10 +279,10 @@ importers:
         specifier: ^15.2.3
         version: 15.2.3(rollup@4.9.5)
       '@tarojs/runtime':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23(@tarojs/shared@3.6.23)
       '@tarojs/shared':
-        specifier: ^3.6.23
+        specifier: 3.6.23
         version: 3.6.23
       '@types/jest':
         specifier: ^29.5.11
