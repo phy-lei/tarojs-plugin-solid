@@ -1,8 +1,8 @@
-import * as path from 'path';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { externals } from 'rollup-plugin-node-externals';
-import ts from 'rollup-plugin-ts';
+import * as path from 'path'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import { externals } from 'rollup-plugin-node-externals'
+import ts from 'rollup-plugin-ts'
 
 const base = {
   plugins: [
@@ -17,7 +17,7 @@ const base = {
     }),
     ts(),
   ],
-};
+}
 
 // 供 CLI 编译时使用的 Taro 插件入口
 const compileConfig = {
@@ -29,7 +29,7 @@ const compileConfig = {
     exports: 'named',
   },
   ...base,
-};
+}
 
 // 供 Loader 使用的运行时入口
 const runtimeConfig = {
@@ -40,7 +40,7 @@ const runtimeConfig = {
     sourcemap: true,
   },
   ...base,
-};
+}
 
 // Solid Loader
 const loaderConfig = {
@@ -52,6 +52,6 @@ const loaderConfig = {
     exports: 'auto',
   },
   ...base,
-};
+}
 
-export default [compileConfig, runtimeConfig, loaderConfig];
+export default [compileConfig, runtimeConfig, loaderConfig]

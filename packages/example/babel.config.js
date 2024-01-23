@@ -5,7 +5,7 @@ module.exports = {
     [
       "taro",
       {
-        framework: "react",
+        framework: "solid",
         ts: true,
       },
     ],
@@ -13,7 +13,7 @@ module.exports = {
     [
       "babel-preset-solid",
       {
-        moduleName: "tarojs-solid-custom-render/dist/custom-render.esm",
+        moduleName: "tarojs-solid-custom-render",
         generate: "universal",
       },
     ],

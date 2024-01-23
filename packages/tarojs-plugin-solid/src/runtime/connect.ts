@@ -12,7 +12,7 @@ import {
 } from '@tarojs/runtime'
 import { hooks } from '@tarojs/shared'
 import { batch, createSignal, For } from 'solid-js'
-import { createComponent, h, render } from 'tarojs-solid-custom-render/dist/custom-render.esm'
+import { createComponent, h, render } from 'tarojs-solid-custom-render'
 
 import { PageContext } from './context'
 import { ensureIsArray, HOOKS_APP_ID, setDefaultDescriptor, setRouterParams } from './utils'
