@@ -2,8 +2,9 @@
   "extends": "../../tsconfig.root.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "CommonJS",
-    "sourceMap": true,
-    "lib": ["DOM"]
+    "lib": ["es2017"],
+    "module": "ESNext",
+    "outDir": "./dist"
   },
+  "exclude": ["dist/*"]
 }

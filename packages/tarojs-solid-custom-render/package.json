@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "自定义solid编译器",
   "main": "dist/index.js",
-  "module": "dist/custom-render.esm.js",
+  "module": "dist/index.esm.js",
   "files": [
     "dist"
   ],

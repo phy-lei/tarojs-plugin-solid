@@ -4,6 +4,8 @@
     "baseUrl": ".",
     "module": "CommonJS",
     "sourceMap": true,
-    "lib": ["DOM"]
+    "lib": ["DOM"],
+    "outDir": "./dist"
   },
+  "exclude": ["dist/*"]
 }
