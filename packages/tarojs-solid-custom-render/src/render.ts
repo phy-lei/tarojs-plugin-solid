@@ -58,5 +58,3 @@ export const createComponent = (type, props) => {
   }
   return _createComponent(type, props)
 }
-
-
