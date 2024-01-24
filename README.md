@@ -2,7 +2,7 @@
 
 <p align="center">使用 Solid 开发小程序。</p>
 
-![这是图片](https://github.com/phy-lei/tarojs-plugin-solid/pic/example.gif)
+![这是图片](https://github.com/phy-lei/tarojs-plugin-solid/blob/main/pic/example.gif)
 
 # 示例cli
 可以用此空白模板[github](https://github.com/phy-lei/taro-solid-cli)作为你项目起始点。
