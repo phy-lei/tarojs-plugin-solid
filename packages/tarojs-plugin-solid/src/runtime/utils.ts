@@ -1,14 +1,4 @@
 import { Current } from '@tarojs/runtime'
-import { isArray } from '@tarojs/shared'
-
-
-export function ensureIsArray<T> (item: T | T[]): T[] {
-  if (isArray(item)) {
-    return item
-  } else {
-    return item ? [item] : []
-  }
-}
 
 /**
  * set writable, enumerable to true
