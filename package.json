@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "pnpm -r --filter=./packages/* run dev",
     "build": "pnpm -r --filter=./packages/* run build",
-    "lint": "eslint packages/ --ext .js --ext .ts --ext .tsx"
+    "lint": "eslint packages/ --ext .js --ext .ts --ext .tsx",
+    "edit-version": "node ./scripts/edit-version.js",
+    "pub": "pnpm run edit-version && pnpm run build"
   },
   "repository": {
     "type": "git",
