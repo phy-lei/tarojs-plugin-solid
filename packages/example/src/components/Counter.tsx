@@ -1,7 +1,6 @@
 import { View, Text, Button } from "@tarojs/components";
 import { createSignal } from "solid-js";
 import './counter.css'
-
 export default function Counter(props) {
   const [count, setCount] = createSignal(props.count);
 
@@ -16,7 +15,7 @@ export default function Counter(props) {
   return (
     <View class="flex">
       <Button onClick={add}>+</Button>
-      <Text>{count()}</Text>
+      <Text class="add">{count()}</Text>
       <Button onClick={sub}>-</Button>
     </View>
   );
