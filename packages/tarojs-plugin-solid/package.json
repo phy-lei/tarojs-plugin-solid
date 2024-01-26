@@ -6,7 +6,8 @@
   "types": "types/taro-components-solid.d.ts",
   "files": [
     "index.js",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "dev": "rollup -c -w --bundleConfigAsCjs",
