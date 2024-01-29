@@ -6,6 +6,7 @@ import "./index.css";
 
 export default function Index() {
   const [color, setColor] = createSignal('red')
+  const [cls, setCls] = createSignal('')
 
   useLoad(() => {
     console.log('%c [ xxx ]', 'font-size:13px; background:pink; color:#bf2c9f;', 123);
@@ -13,8 +14,13 @@ export default function Index() {
 
   return (
     <View className="index">
-      <Text style={`color: ${color()}`}>Hello world! </Text>
-      <Text style={{color: color()}}>Hello world2! </Text>
+      <View>
+        <Text style={`color: ${color()}`}>Hello world! </Text>
+      </View>
+      <View>
+        <Text class={cls()}>Hello world2! </Text>
+      </View>
+      <Button onClick={() => setCls('bold')}>set class</Button>
       <Button onClick={() => setColor('blue')}>set style</Button>
       <Counter count={0}></Counter>
       <View>{Math.random()}</View>
