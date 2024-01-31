@@ -23,7 +23,9 @@ export function h (com: string, props?: any, children?: Children) {
   const ele = createElement(com)
   const [local, otherProps] = splitProps(props, ['ref', 'children'])
 
-  setProps(ele, otherProps)
+  for (const key in otherProps) {
+    setProp(ele, key, otherProps[key])
+  }
 
   if (local.ref) {
     createRenderEffect(() => {
@@ -49,14 +51,6 @@ export function h (com: string, props?: any, children?: Children) {
   return ele
 }
 
-function setProps (ele: TaroNode, otherProps) {
-  // 普通属性直接赋值
-  if (Object.keys(otherProps)?.length) {
-    for (const key in otherProps) {
-      setProp(ele, key, otherProps[key])
-    }
-  }
-}
 
 function insertNodes (parent: TaroNode, children: Children) {
   if (children === undefined) {
