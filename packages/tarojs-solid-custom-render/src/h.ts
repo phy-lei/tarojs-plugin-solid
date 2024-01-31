@@ -1,7 +1,7 @@
 import { TaroNode } from '@tarojs/runtime'
 import { createRenderEffect, splitProps, children as solidChildren, Accessor } from 'solid-js'
 import { ResolvedChildren } from 'solid-js/types/reactive/signal'
-import { createElement, createTextNode, effect, insert, insertNode, setProp } from './render'
+import { createElement, createTextNode, insert, insertNode, setProp } from './render'
 
 export type Component = (props?: any) => TaroNode
 
@@ -50,29 +50,10 @@ export function h (com: string, props?: any, children?: Children) {
 }
 
 function setProps (ele: TaroNode, otherProps) {
-  const desc = Object.getOwnPropertyDescriptors(otherProps)
-  const plain_keys = Object.keys(desc).filter((key) => {
-    if (desc[key].get) {
-      return false
-    }
-    return true
-  })
-  const [plainProps, getterValues] = splitProps(otherProps, plain_keys)
-
   // 普通属性直接赋值
-  if (Object.keys(plainProps)?.length) {
-    for (const key in plainProps) {
-      setProp(ele, key, plainProps[key])
-    }
-  }
-
-  // 响应式属性 放到createRenderEffect中
-  if (Object.keys(getterValues)?.length) {
-    for (const key in getterValues) {
-      effect(() => {
-        const val = getterValues[key]
-        setProp(ele, key, val, getterValues[key])
-      })
+  if (Object.keys(otherProps)?.length) {
+    for (const key in otherProps) {
+      setProp(ele, key, otherProps[key])
     }
   }
 }
