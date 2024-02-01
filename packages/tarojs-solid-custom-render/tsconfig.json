@@ -5,6 +5,5 @@
     "lib": ["es2017"],
     "module": "ESNext",
     "outDir": "./dist"
-  },
-  "exclude": ["dist/*"]
+  }
 }
