@@ -38,7 +38,7 @@ export function h (com: string, props?: any, children?: Children) {
   }
 
   // get 的处理
-  if (local.hasOwnProperty('children')) {
+  if (local.children) {
     const descriptor = Object.getOwnPropertyDescriptor(local, 'children')
     if (descriptor?.get) {
       children = solidChildren(() => local.children)
