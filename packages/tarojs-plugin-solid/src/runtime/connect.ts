@@ -9,7 +9,7 @@ import {
 } from '@tarojs/runtime'
 import { hooks } from '@tarojs/shared'
 import { batch, createSignal, For } from 'solid-js'
-import { createComponent, h, render } from 'tarojs-solid-custom-render'
+import { createComponent, render, createElement, insert, setProp } from 'tarojs-solid-custom-render'
 
 import { PageContext } from './context'
 import { setDefaultDescriptor, setRouterParams } from './utils'
@@ -77,12 +77,9 @@ export function createSolidApp (App: Component, config) {
               },
             })
           }
-
-          if (process.env.TARO_ENV === 'h5') {
-            return h('div', { id, className: 'taro_page' }, children)
-          } else {
-            return h('root', { id }, children)
-          }
+          const root = process.env.TARO_ENV === 'h5' ? createElement('div') : createElement('root')
+          setProp(root, 'id', id)
+          insert(root, children)
         },
       }),
     })

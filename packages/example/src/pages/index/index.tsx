@@ -1,4 +1,3 @@
-import { View, Text, Button, Icon } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import Counter from '@/components/Counter'
 import { createSignal } from 'solid-js'
@@ -13,18 +12,18 @@ export default function Index() {
   })
 
   return (
-    <View class="index">
-      <View>
-        <Text style={`color: ${color()}`}>Hello world! </Text>
-      </View>
-      <View>
-        <Text class={cls()}>Hello world2! </Text>
-      </View>
-      <Button onClick={() => setCls(styles['bold'])}>set class</Button>
-      <Button onClick={() => setColor('blue')}>set style</Button>
+    <view class="index">
+      <view style={`color: ${color()}`}>
+        <text>Hello world! </text>
+        <view>{Math.random()}</view>
+      </view>
+      <view>
+        <text class={cls()}>Hello world2! </text>
+      </view>
+      <button onClick={() => setCls(styles['bold'])}>set class</button>
+      <button onClick={() => setColor('blue')}>set style</button>
       <Counter count={0}></Counter>
-      <View>{Math.random()}</View>
-      <Icon size="60" type="success" />
-    </View>
+      <view>{Math.random()}</view>
+    </view>
   )
 }

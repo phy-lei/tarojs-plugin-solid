@@ -1,7 +1,6 @@
 import { createRenderer } from 'solid-js/universal'
 import { document, TaroElement, TaroNode, TaroText } from '@tarojs/runtime'
 import { setProperty } from './utils'
-import { h } from './h'
 
 const ref = createRenderer<TaroNode>({
   createElement (type: string) {
@@ -43,7 +42,7 @@ export const render = ref.render
 export const effect = ref.effect
 export const memo = ref.memo
 export const createElement = ref.createElement
-export const _createComponent = ref.createComponent
+export const createComponent = ref.createComponent
 export const createTextNode = ref.createTextNode
 export const insertNode = ref.insertNode
 export const insert = ref.insert
@@ -51,10 +50,3 @@ export const spread = ref.spread
 export const setProp = ref.setProp
 export const mergeProps = ref.mergeProps
 export const use = ref.use
-
-export const createComponent = (type, props) => {
-  if (typeof type === 'string') {
-    return h(type, props)
-  }
-  return _createComponent(type, props)
-}

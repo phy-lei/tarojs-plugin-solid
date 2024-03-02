@@ -16,6 +16,52 @@ function isEventName (s: string) {
   return s.startsWith('on')
 }
 
+function diffClassList (newVal: ClassList, oldVal: ClassList) {
+  const result: ClassList = {}
+  for (const key in oldVal) {
+    if (newVal[key] !== oldVal[key]) {
+      result[key] = newVal[key]
+    }
+  }
+  for (const key in newVal) {
+    if (result.hasOwnProperty(key)) {
+      continue
+    }
+    result[key] = newVal[key]
+  }
+  return result
+}
+
+function setEvent (
+  dom: TaroElement,
+  name: string,
+  value: unknown,
+  oldValue?: unknown
+) {
+  const isCapture = name.endsWith('Capture')
+  let eventName = name.toLowerCase().slice(2)
+  if (isCapture) {
+    eventName = eventName.slice(0, -7)
+  }
+
+  const compName = capitalize(toCamelCase(dom.tagName.toLowerCase()))
+
+  if (eventName === 'click' && compName in internalComponents) {
+    eventName = 'tap'
+  }
+
+  if (isFunction(value)) {
+    if (oldValue) {
+      dom.removeEventListener(eventName, oldValue as any, false)
+      dom.addEventListener(eventName, value, { isCapture, sideEffect: false })
+    } else {
+      dom.addEventListener(eventName, value, isCapture)
+    }
+  } else {
+    dom.removeEventListener(eventName, oldValue as any)
+  }
+}
+
 export function setProperty (
   dom: TaroElement,
   name: string,
@@ -63,48 +109,4 @@ export function setProperty (
   }
 }
 
-function diffClassList (newVal: ClassList, oldVal: ClassList) {
-  const result: ClassList = {}
-  for (const key in oldVal) {
-    if (newVal[key] !== oldVal[key]) {
-      result[key] = newVal[key]
-    }
-  }
-  for (const key in newVal) {
-    if (result.hasOwnProperty(key)) {
-      continue
-    }
-    result[key] = newVal[key]
-  }
-  return result
-}
 
-function setEvent (
-  dom: TaroElement,
-  name: string,
-  value: unknown,
-  oldValue?: unknown
-) {
-  const isCapture = name.endsWith('Capture')
-  let eventName = name.toLowerCase().slice(2)
-  if (isCapture) {
-    eventName = eventName.slice(0, -7)
-  }
-
-  const compName = capitalize(toCamelCase(dom.tagName.toLowerCase()))
-
-  if (eventName === 'click' && compName in internalComponents) {
-    eventName = 'tap'
-  }
-
-  if (isFunction(value)) {
-    if (oldValue) {
-      dom.removeEventListener(eventName, oldValue as any, false)
-      dom.addEventListener(eventName, value, { isCapture, sideEffect: false })
-    } else {
-      dom.addEventListener(eventName, value, isCapture)
-    }
-  } else {
-    dom.removeEventListener(eventName, oldValue as any)
-  }
-}
