@@ -1,6 +1,6 @@
 import { useLoad } from '@tarojs/taro'
 import Counter from '@/components/Counter'
-import { createSignal } from 'solid-js'
+import { createSignal, JSX } from 'solid-js'
 import styles from './index.module.css'
 
 export default function Index() {
@@ -13,8 +13,8 @@ export default function Index() {
 
   return (
     <view class="index">
-      <view style={`color: ${color()}`}>
-        <text>Hello world! </text>
+      <view>
+        <text style={`color: ${color()}`}>Hello world! </text>
         <view>{Math.random()}</view>
       </view>
       <view>

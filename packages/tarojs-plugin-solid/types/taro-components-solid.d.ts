@@ -102,3 +102,9 @@ export declare const PageMeta: Components<PageMetaProps>
 export declare const CustomWrapper: Components<CustomWrapperProps>
 export declare const Slot: Components<SlotProps>
 export declare const NativeSlot: Components<NativeSlotProps>
+
+export namespace JSX {
+  interface SVGElementTags {
+    view: Components<ViewProps>
+  }
+}

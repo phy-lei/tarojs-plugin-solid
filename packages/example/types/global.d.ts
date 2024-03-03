@@ -1,4 +1,5 @@
 /// <reference types="@tarojs/taro" />
+/// <reference types="tarojs-plugin-solid/types/taro-components-solid" />
 
 declare module '*.png';
 declare module '*.gif';
@@ -26,8 +27,5 @@ declare namespace NodeJS {
   }
 }
 
-declare module '@tarojs/components' {
-  export * from 'tarojs-plugin-solid/types/taro-components-solid'
-}
 
 
