@@ -1,6 +1,6 @@
 import { useLoad } from '@tarojs/taro'
 import Counter from '@/components/Counter'
-import { createSignal, JSX } from 'solid-js'
+import { createSignal } from 'solid-js'
 import styles from './index.module.css'
 
 export default function Index() {

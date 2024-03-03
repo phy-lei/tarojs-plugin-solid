@@ -18,9 +18,10 @@
     "jsxImportSource": "solid-js",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "esModuleInterop": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "typeRoots": ["node_modules/@types"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

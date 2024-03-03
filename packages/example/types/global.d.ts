@@ -1,5 +1,5 @@
 /// <reference types="@tarojs/taro" />
-/// <reference types="tarojs-plugin-solid/types/taro-components-solid" />
+/// <reference path="../node_modules/tarojs-plugin-solid/types/taro-components-solid.d.ts" />
 
 declare module '*.png';
 declare module '*.gif';
@@ -26,6 +26,3 @@ declare namespace NodeJS {
     TARO_APP_ID: string
   }
 }
-
-
-
