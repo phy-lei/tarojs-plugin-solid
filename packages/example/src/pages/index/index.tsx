@@ -25,6 +25,8 @@ export default function Index() {
 
       <Counter count={0}></Counter>
       <view>{Math.random()}</view>
+      <icon type="success"></icon>
+      <input type="text" />
     </view>
   )
 }
