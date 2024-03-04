@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "taro-react",
+  "projectname": "taro-solid",
   "description": "",
   "appid": "touristappid",
   "setting": {

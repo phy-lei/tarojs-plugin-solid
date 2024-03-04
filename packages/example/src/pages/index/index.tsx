@@ -22,6 +22,7 @@ export default function Index() {
       </view>
       <button onClick={() => setCls(styles['bold'])}>set class</button>
       <button onClick={() => setColor('blue')}>set style</button>
+
       <Counter count={0}></Counter>
       <view>{Math.random()}</view>
     </view>
