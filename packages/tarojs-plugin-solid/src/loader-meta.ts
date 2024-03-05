@@ -1,5 +1,18 @@
-import * as acorn from 'acorn'
-import * as walk from 'acorn-walk'
+
+import { capitalize, internalComponents, toCamelCase } from '@tarojs/shared'
+
+let componentConfig
+try {
+  componentConfig = require('@tarojs/webpack5-runner/dist/template/component').componentConfig
+} catch {
+  // 兼容 Taro 3.6.5 版本
+  componentConfig = require('@tarojs/webpack5-runner/dist/utils/component').componentConfig
+}
+
+if (!componentConfig) {
+  throw new Error('The plugin does not support the current version of Taro')
+}
+
 interface ILoaderMeta {
   importFrameworkStatement: string
   mockAppStatement: string
@@ -15,56 +28,30 @@ interface ILoaderMeta {
   modifyConfig?: (config: Record<string, any>, source: string) => void
 }
 
-function addConfig (source) {
-  const configsMap = {
-    enableShareAppMessage: ['onShareAppMessage', 'useShareAppMessage'],
-    enableShareTimeline: ['onShareTimeline', 'useShareTimeline']
-  }
-  const ast = acorn.parse(source, {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
-  })
+function extractCreateElementTags (code: string) {
+  const regex = /_\$createElement\s*\(\s*(['"])?(.*?)\1\s*\)/g
+  const matches = []
+  let match
 
-  const additionConfig: Record<string, any> = {}
-
-  function check (name: string) {
-    Object.keys(configsMap).forEach(configName => {
-      const apis: string[] = configsMap[configName]
-      if (apis.includes(name)) {
-        additionConfig[configName] = true
-      }
-    })
+  while ((match = regex.exec(code)) !== null) {
+    if (match[2]) { // 检查是否有内容
+      matches.push(match[2].replace(/"/g, '')) // 移除双引号
+    }
   }
 
-  walk.simple(ast, {
-    FunctionExpression (node: any) {
-      if (!node.id || !node.id.name) return
-      check(node.id.name)
-    },
-    FunctionDeclaration (node: any) {
-      if (!node.id || !node.id.name) return
-      check(node.id.name)
-    },
-    CallExpression (node: any) {
-      const { callee } = node
-      if (callee.type === 'Identifier') {
-        check(callee.name)
-      } else if (callee.type === 'MemberExpression') {
-        if (callee.property.type === 'Identifier') {
-          check(callee.property.name)
-        } else if (callee.property.type === 'Literal') {
-          check(callee.property.value)
-        }
-      }
-      node.arguments.forEach(item => {
-        if (item.type === 'Literal' && item.value) {
-          check(item.value)
-        }
-      })
+  return matches
+}
+
+function modifyComponentConfig (source) {
+  const res = extractCreateElementTags(source)
+
+  res.forEach((name) => {
+    if (capitalize(toCamelCase(name)) in internalComponents) {
+      // 收集小程序模板中需要渲染的组件
+      componentConfig.includes.add(name)
     }
   })
-
-  return additionConfig
+  return {}
 }
 
 export function getLoaderMeta (): ILoaderMeta {
@@ -77,8 +64,8 @@ export function getLoaderMeta (): ILoaderMeta {
     importFrameworkName: '',
     compatComponentImport: '',
     compatComponentExtra: '',
-    modifyConfig (config, source) {
-      Object.assign(config, addConfig(source))
+    modifyConfig (_, source) {
+      modifyComponentConfig(source)
     }
   }
 }
