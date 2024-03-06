@@ -1,14 +1,26 @@
 {
   "name": "babel-preset-solid-taro",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.37.17",
+  "description": "babel-preset-solid的babel插件，拓展了收集tagName的功能",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
   "scripts": {
+    "dev": "rollup -c -w --bundleConfigAsCjs",
     "build": "rollup -c --bundleConfigAsCjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "babel",
+    "taro",
+    "taro3",
+    "tarojs",
+    "solid",
+    "solidjs"
+  ],
+  "author": "phy-lei",
+  "license": "MIT",
   "devDependencies": {
     "babel-plugin-jsx-dom-expressions": "^0.37.17",
     "@rollup/plugin-commonjs": "^25.0.7",

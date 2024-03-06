@@ -17,7 +17,7 @@ const config = {
   effectWrapper: 'effect',
   memoWrapper: 'memo',
   validate: true,
-  tagCollector: (tagName) => {},
+  tagCollector: (_) => {},
 }
 
 function isComponent(tagName) {
