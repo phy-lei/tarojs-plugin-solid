@@ -1,5 +1,6 @@
+import preprocess from './preprocess'
+
 const jsxTransform = require('babel-plugin-jsx-dom-expressions')
-const preprocess = require('./preprocess')
 
 const jsxTransformObj = jsxTransform()
 

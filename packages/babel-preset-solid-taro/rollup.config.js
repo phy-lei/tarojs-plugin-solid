@@ -1,24 +1,21 @@
+import * as path from 'path'
+import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
-import path from 'path'
+import { externals } from 'rollup-plugin-node-externals'
 
 const plugins = [
-  nodeResolve({
-    rootDir: path.join(process.cwd(), '../..'),
-    moduleDirectories: ['node_modules', 'packages'],
+  commonjs(),
+  nodeResolve(),
+  externals({
+    include: ['@babel/types', '@tarojs/shared', '@tarojs/webpack5-runner'],
   }),
 ]
 
 export default {
   input: 'src/index.js',
-  external: [
-    '@babel/plugin-syntax-jsx',
-    '@babel/helper-module-imports',
-    '@babel/types',
-    'html-entities',
-    'validate-html-nesting',
-  ],
+
   output: {
-    file: 'index.js',
+    file: path.join(__dirname, 'dist/index.js'),
     format: 'cjs',
     exports: 'auto',
   },

@@ -1,12 +1,43 @@
-/* eslint-disable no-undef */
+import * as t from '@babel/types'
 
+const { isValidHTMLNesting } = require('validate-html-nesting')
+
+const config = {
+  moduleName: 'dom',
+  generate: 'dom',
+  hydratable: false,
+  delegateEvents: true,
+  delegatedEvents: [],
+  builtIns: [],
+  requireImportSource: false,
+  wrapConditionals: true,
+  omitNestedClosingTags: false,
+  contextToCustomElements: false,
+  staticMarker: '@once',
+  effectWrapper: 'effect',
+  memoWrapper: 'memo',
+  validate: true,
+  tagCollector: (tagName) => {},
+}
+
+function isComponent(tagName) {
+  return (
+    (tagName[0] && tagName[0].toLowerCase() !== tagName[0]) || tagName.includes('.') || /[^a-zA-Z]/.test(tagName[0])
+  )
+}
+
+// From https://github.com/MananTank/babel-plugin-validate-jsx-nesting/blob/main/src/index.js
 const JSXValidator = {
   JSXElement(path) {
     const elName = path.node.openingElement.name
     const parent = path.parent
     if (!t.isJSXElement(parent) || !t.isJSXIdentifier(elName)) return
     const elTagName = elName.name
-    // if (isComponent(elTagName)) return
+    if (isComponent(elTagName)) return
+    const config = path.hub.file.metadata.config
+    if (typeof config.tagCollector === 'function') {
+      config.tagCollector(elTagName)
+    }
     const parentElName = parent.openingElement.name
     if (!t.isJSXIdentifier(parentElName)) return
     const parentElTagName = parentElName.name

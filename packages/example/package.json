@@ -59,6 +59,7 @@
     "react": "^18.0.0",
     "tarojs-plugin-solid": "workspace:*",
     "tarojs-solid-custom-render": "workspace:*",
+    "babel-preset-solid-taro": "workspace:*",
     "solid-js": "^1.8.11"
   },
   "devDependencies": {
