@@ -1,7 +1,7 @@
 module.exports = {
   moduleDirectories: ['node_modules', 'packages'],
   testEnvironment: 'jsdom',
-  collectCoverageFrom: ['./dist/index.js'],
+  collectCoverageFrom: ['./babel-plugin-jsx-dom-expressions.js'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest'
   }

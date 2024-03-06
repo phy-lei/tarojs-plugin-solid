@@ -1,10 +1,10 @@
 const path = require('path')
 const pluginTester = require('babel-plugin-tester').default
-const plugin = require('../dist/index')
+const plugin = require('../babel-plugin-jsx-dom-expressions')
 
 const set = new Set()
 let count = 0
-const END_COUNT = 17
+const END_COUNT = 21
 pluginTester({
   plugin,
   pluginOptions: {

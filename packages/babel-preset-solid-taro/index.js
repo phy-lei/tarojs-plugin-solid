@@ -1,6 +1,6 @@
 const { capitalize, internalComponents, toCamelCase } = require('@tarojs/shared')
 
-const jsxTransform = require('./dist/index')
+const jsxTransform = require('./babel-plugin-jsx-dom-expressions')
 
 let componentConfig
 try {
@@ -27,24 +27,24 @@ module.exports = function (context, options = {}) {
             'Portal',
             'Index',
             'Dynamic',
-            'ErrorBoundary',
+            'ErrorBoundary'
           ],
           contextToCustomElements: true,
           wrapConditionals: true,
           generate: 'dom',
-          tagCollector: (tag) => {
+          tagCollector: tag => {
             if (capitalize(toCamelCase(tag)) in internalComponents) {
               // 收集小程序模板中需要渲染的组件
               componentConfig.includes.add(tag)
             }
-          },
+          }
         },
         options
-      ),
-    ],
+      )
+    ]
   ]
 
   return {
-    plugins,
+    plugins
   }
 }
