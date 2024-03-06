@@ -1,0 +1,24 @@
+{
+  "name": "babel-preset-solid-taro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-jsx-dom-expressions": "^0.37.17",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@tarojs/helper": "3.6.23",
+    "@tarojs/runtime": "3.6.23",
+    "@tarojs/service": "3.6.23",
+    "@tarojs/shared": "3.6.23",
+    "jest": "^29.7.0",
+    "rollup": "^4.9.5",
+    "rollup-plugin-node-externals": "^4.0.0"
+  }
+}
