@@ -2,6 +2,9 @@ const path = require('path')
 const pluginTester = require('babel-plugin-tester').default
 const plugin = require('../dist/index')
 
+const set = new Set()
+let count = 0
+const END_COUNT = 17
 pluginTester({
   plugin,
   pluginOptions: {
@@ -9,8 +12,26 @@ pluginTester({
     builtIns: ['For', 'Show'],
     generate: 'universal',
     staticMarker: '@once',
-    tagCollector: jest.fn(tags => {
-      expect(tags.length).toBeGreaterThan(0) // 检查至少被调用一次
+    tagCollector: jest.fn(tag => {
+      count++
+      set.add(tag)
+      if (count === END_COUNT) {
+        expect(set).toEqual(
+          new Set([
+            'style',
+            'h1',
+            'label',
+            'input',
+            'span',
+            'a',
+            'div',
+            'table',
+            'tbody',
+            'footer',
+            'button'
+          ])
+        )
+      }
     })
   },
   title: 'Convert JSX',
