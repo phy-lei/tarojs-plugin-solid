@@ -30,7 +30,7 @@ function _interopNamespaceDefault(e) {
   return Object.freeze(n)
 }
 
-var t__namespace = /*#__PURE__*/ _interopNamespaceDefault(t)
+var t__namespace = /* #__PURE__ */ _interopNamespaceDefault(t)
 
 const booleans = [
   'allowfullscreen',
@@ -60,9 +60,9 @@ const booleans = [
   'selected'
 ]
 
-const BooleanAttributes = /*#__PURE__*/ new Set(booleans)
+const BooleanAttributes = /* #__PURE__ */ new Set(booleans)
 
-const Properties = /*#__PURE__*/ new Set([
+const Properties = /* #__PURE__ */ new Set([
   'className',
   'value',
   'readOnly',
@@ -73,15 +73,20 @@ const Properties = /*#__PURE__*/ new Set([
   ...booleans
 ])
 
-const ChildProperties = /*#__PURE__*/ new Set(['innerHTML', 'textContent', 'innerText', 'children'])
+const ChildProperties = /* #__PURE__ */ new Set([
+  'innerHTML',
+  'textContent',
+  'innerText',
+  'children'
+])
 
 // React Compat
-const Aliases = /*#__PURE__*/ Object.assign(Object.create(null), {
+const Aliases = /* #__PURE__ */ Object.assign(Object.create(null), {
   className: 'class',
   htmlFor: 'for'
 })
 
-const PropAliases = /*#__PURE__*/ Object.assign(Object.create(null), {
+const PropAliases = /* #__PURE__ */ Object.assign(Object.create(null), {
   class: 'className',
   formnovalidate: {
     $: 'formNoValidate',
@@ -109,11 +114,11 @@ const PropAliases = /*#__PURE__*/ Object.assign(Object.create(null), {
 
 function getPropAlias(prop, tagName) {
   const a = PropAliases[prop]
-  return typeof a === 'object' ? (a[tagName] ? a['$'] : undefined) : a
+  return typeof a === 'object' ? (a[tagName] ? a.$ : undefined) : a
 }
 
 // list of Element events that will be delegated
-const DelegatedEvents = /*#__PURE__*/ new Set([
+const DelegatedEvents = /* #__PURE__ */ new Set([
   'beforeinput',
   'click',
   'dblclick',
@@ -138,7 +143,7 @@ const DelegatedEvents = /*#__PURE__*/ new Set([
   'touchstart'
 ])
 
-const SVGElements = /*#__PURE__*/ new Set([
+const SVGElements = /* #__PURE__ */ new Set([
   // "a",
   'altGlyph',
   'altGlyphDef',
@@ -264,13 +269,13 @@ function registerImportMethod(path, name, moduleName) {
     (path.scope.getProgramParent().data.imports = new Map())
   moduleName = moduleName || getConfig(path).moduleName
   if (!imports.has(`${moduleName}:${name}`)) {
-    let id = helperModuleImports.addNamed(path, name, moduleName, {
+    const id = helperModuleImports.addNamed(path, name, moduleName, {
       nameHint: `_$${name}`
     })
     imports.set(`${moduleName}:${name}`, id)
     return id
   } else {
-    let iden = imports.get(`${moduleName}:${name}`)
+    const iden = imports.get(`${moduleName}:${name}`)
     // the cloning is required to play well with babel-preset-env which is
     // transpiling import as we add them and using the same identifier causes
     // problems with the multiple identifiers of the same thing
@@ -461,8 +466,8 @@ function toPropertyName(name) {
 }
 
 function wrappedByText(list, startIndex) {
-  let index = startIndex,
-    wrapped
+  let index = startIndex
+  let wrapped
   while (--index >= 0) {
     const node = list[index]
     if (!node) continue
@@ -586,8 +591,8 @@ function escapeHTML(s, attr) {
 
   if (iDelim < 0 && iAmp < 0) return s
 
-  let left = 0,
-    out = ''
+  let left = 0
+  let out = ''
 
   while (iDelim >= 0 && iAmp >= 0) {
     if (iDelim < iAmp) {
@@ -800,23 +805,23 @@ const alwaysClose = [
 ]
 
 function transformElement$3(path, info) {
-  let tagName = getTagName(path.node),
-    config = getConfig(path),
-    wrapSVG = info.topLevel && tagName != 'svg' && SVGElements.has(tagName),
-    voidTag = VoidElements.indexOf(tagName) > -1,
-    isCustomElement = tagName.indexOf('-') > -1,
-    results = {
-      template: `<${tagName}`,
-      declarations: [],
-      exprs: [],
-      dynamics: [],
-      postExprs: [],
-      isSVG: wrapSVG,
-      hasCustomElement: isCustomElement,
-      tagName,
-      renderer: 'dom',
-      skipTemplate: false
-    }
+  const tagName = getTagName(path.node)
+  const config = getConfig(path)
+  const wrapSVG = info.topLevel && tagName != 'svg' && SVGElements.has(tagName)
+  const voidTag = VoidElements.indexOf(tagName) > -1
+  const isCustomElement = tagName.indexOf('-') > -1
+  const results = {
+    template: `<${tagName}`,
+    declarations: [],
+    exprs: [],
+    dynamics: [],
+    postExprs: [],
+    isSVG: wrapSVG,
+    hasCustomElement: isCustomElement,
+    tagName,
+    renderer: 'dom',
+    skipTemplate: false
+  }
   if (config.hydratable && (tagName === 'html' || tagName === 'head' || tagName === 'body')) {
     results.skipTemplate = true
     if (tagName === 'head' && info.topLevel) {
@@ -862,7 +867,7 @@ function transformElement$3(path, info) {
     if (toBeClosed) results.template += `</${tagName}>`
   }
   if (info.topLevel && config.hydratable && results.hasHydratableEvent) {
-    let runHydrationEvents = registerImportMethod(
+    const runHydrationEvents = registerImportMethod(
       path,
       'runHydrationEvents',
       getRendererConfig(path, 'dom').moduleName
@@ -914,7 +919,7 @@ function setAttr$2(path, elem, name, value, { isSVG, dynamic, prevId, isCE, tagN
           t__namespace.memberExpression(elem, t__namespace.identifier('style')),
           t__namespace.identifier('setProperty')
         ),
-        [t__namespace.stringLiteral(name), prevId ? prevId : value]
+        [t__namespace.stringLiteral(name), prevId || value]
       ),
       t__namespace.callExpression(
         t__namespace.memberExpression(
@@ -996,7 +1001,7 @@ function setAttr$2(path, elem, name, value, { isSVG, dynamic, prevId, isCE, tagN
     )
   }
 
-  let isNameSpaced = name.indexOf(':') > -1
+  const isNameSpaced = name.indexOf(':') > -1
   name = Aliases[name] || name
   !isSVG && (name = name.toLowerCase())
   const ns = isNameSpaced && SVGNamespace[name.split(':')[0]]
@@ -1028,16 +1033,16 @@ function detectResolvableEventHandler(attribute, handler) {
 }
 
 function transformAttributes$2(path, results) {
-  let elem = results.id,
-    hasHydratableEvent = false,
-    children,
-    spreadExpr,
-    attributes = path.get('openingElement').get('attributes')
-  const tagName = getTagName(path.node),
-    isSVG = SVGElements.has(tagName),
-    isCE = tagName.includes('-'),
-    hasChildren = path.node.children.length > 0,
-    config = getConfig(path)
+  const elem = results.id
+  let hasHydratableEvent = false
+  let children
+  let spreadExpr
+  let attributes = path.get('openingElement').get('attributes')
+  const tagName = getTagName(path.node)
+  const isSVG = SVGElements.has(tagName)
+  const isCE = tagName.includes('-')
+  const hasChildren = path.node.children.length > 0
+  const config = getConfig(path)
 
   // preprocess spreads
   if (attributes.some(attribute => t__namespace.isJSXSpreadAttribute(attribute.node))) {
@@ -1051,7 +1056,7 @@ function transformAttributes$2(path, results) {
       'attributes',
       attributes.map(a => a.node)
     )
-    //NOTE: can't be checked at compile time so add to compiled output
+    // NOTE: can't be checked at compile time so add to compiled output
     hasHydratableEvent = true
   }
 
@@ -1068,8 +1073,8 @@ function transformAttributes$2(path, results) {
         !a.node.value.expression.properties.some(p => t__namespace.isSpreadElement(p))
     )
   if (styleAttribute) {
-    let i = 0,
-      leading = styleAttribute.node.value.expression.leadingComments
+    let i = 0
+    const leading = styleAttribute.node.value.expression.leadingComments
     styleAttribute.node.value.expression.properties.slice().forEach((p, index) => {
       if (!p.computed) {
         if (leading) p.value.leadingComments = leading
@@ -1112,9 +1117,9 @@ function transformAttributes$2(path, results) {
       )
   )
   if (classListAttribute) {
-    let i = 0,
-      leading = classListAttribute.node.value.expression.leadingComments,
-      classListProperties = classListAttribute.get('value').get('expression').get('properties')
+    let i = 0
+    const leading = classListAttribute.node.value.expression.leadingComments
+    const classListProperties = classListAttribute.get('value').get('expression').get('properties')
     classListProperties.slice().forEach((propPath, index) => {
       const p = propPath.node
       const { confident, value: computed } = propPath.get('value').evaluate()
@@ -1161,12 +1166,12 @@ function transformAttributes$2(path, results) {
     a => a.node.name && (a.node.name.name === 'class' || a.node.name.name === 'className')
   )
   if (classAttributes.length > 1) {
-    const first = classAttributes[0].node,
-      values = [],
-      quasis = [t__namespace.templateElement({ raw: '' })]
+    const first = classAttributes[0].node
+    const values = []
+    const quasis = [t__namespace.templateElement({ raw: '' })]
     for (let i = 0; i < classAttributes.length; i++) {
-      const attr = classAttributes[i].node,
-        isLast = i === classAttributes.length - 1
+      const attr = classAttributes[i].node
+      const isLast = i === classAttributes.length - 1
       if (!t__namespace.isJSXExpressionContainer(attr.value)) {
         const prev = quasis.pop()
         quasis.push(
@@ -1204,13 +1209,13 @@ function transformAttributes$2(path, results) {
     .get('attributes')
     .forEach(attribute => {
       const node = attribute.node
-      let value = node.value,
-        key = t__namespace.isJSXNamespacedName(node.name)
-          ? `${node.name.namespace.name}:${node.name.name.name}`
-          : node.name.name,
-        reservedNameSpace =
-          t__namespace.isJSXNamespacedName(node.name) &&
-          reservedNameSpaces.has(node.name.namespace.name)
+      let value = node.value
+      let key = t__namespace.isJSXNamespacedName(node.name)
+        ? `${node.name.namespace.name}:${node.name.name.name}`
+        : node.name.name
+      const reservedNameSpace =
+        t__namespace.isJSXNamespacedName(node.name) &&
+        reservedNameSpaces.has(node.name.namespace.name)
       if (t__namespace.isJSXExpressionContainer(value) && !key.startsWith('use:')) {
         const evaluated = attribute.get('value').get('expression').evaluate().value
         let type
@@ -1248,11 +1253,11 @@ function transformAttributes$2(path, results) {
           ) {
             value.expression = value.expression.expression
           }
-          let binding,
-            isFunction =
-              t__namespace.isIdentifier(value.expression) &&
-              (binding = path.scope.getBinding(value.expression.name)) &&
-              binding.kind === 'const'
+          let binding
+          const isFunction =
+            t__namespace.isIdentifier(value.expression) &&
+            (binding = path.scope.getBinding(value.expression.name)) &&
+            binding.kind === 'const'
           if (!isFunction && t__namespace.isLVal(value.expression)) {
             const refIdentifier = path.scope.generateUidIdentifier('_ref$')
             results.exprs.unshift(
@@ -1549,7 +1554,7 @@ function transformAttributes$2(path, results) {
           }
 
           for (let i = 0, len = text.length; i < len; i++) {
-            let char = text[i]
+            const char = text[i]
 
             if (
               char === "'" ||
@@ -1586,8 +1591,8 @@ function transformAttributes$2(path, results) {
 }
 
 function findLastElement(children, hydratable) {
-  let lastElement = -1,
-    tagName
+  let lastElement = -1
+  let tagName
   for (let i = children.length - 1; i >= 0; i--) {
     const node = children[i].node
     if (
@@ -1604,30 +1609,28 @@ function findLastElement(children, hydratable) {
 }
 
 function transformChildren$2(path, results, config) {
-  let tempPath = results.id && results.id.name,
-    tagName = getTagName(path.node),
-    nextPlaceholder,
-    i = 0
-  const filteredChildren = filterChildren(path.get('children')),
-    lastElement = findLastElement(filteredChildren, config.hydratable),
-    childNodes = filteredChildren.reduce((memo, child, index) => {
-      if (child.isJSXFragment()) {
-        throw new Error(
-          `Fragments can only be used top level in JSX. Not used under a <${tagName}>.`
-        )
-      }
-      const transformed = transformNode(child, {
-        toBeClosed: results.toBeClosed,
-        lastElement: index === lastElement,
-        skipId: !results.id || !detectExpressions(filteredChildren, index, config)
-      })
-      if (!transformed) return memo
-      const i = memo.length
-      if (transformed.text && i && memo[i - 1].text) {
-        memo[i - 1].template += transformed.template
-      } else memo.push(transformed)
-      return memo
-    }, [])
+  let tempPath = results.id && results.id.name
+  const tagName = getTagName(path.node)
+  let nextPlaceholder
+  let i = 0
+  const filteredChildren = filterChildren(path.get('children'))
+  const lastElement = findLastElement(filteredChildren, config.hydratable)
+  const childNodes = filteredChildren.reduce((memo, child, index) => {
+    if (child.isJSXFragment()) {
+      throw new Error(`Fragments can only be used top level in JSX. Not used under a <${tagName}>.`)
+    }
+    const transformed = transformNode(child, {
+      toBeClosed: results.toBeClosed,
+      lastElement: index === lastElement,
+      skipId: !results.id || !detectExpressions(filteredChildren, index, config)
+    })
+    if (!transformed) return memo
+    const i = memo.length
+    if (transformed.text && i && memo[i - 1].text) {
+      memo[i - 1].template += transformed.template
+    } else memo.push(transformed)
+    return memo
+  }, [])
 
   childNodes.forEach((child, index) => {
     if (!child) return
@@ -1695,9 +1698,9 @@ function transformChildren$2(path, results, config) {
       nextPlaceholder = null
       i++
     } else if (child.exprs.length) {
-      let insert = registerImportMethod(path, 'insert', getRendererConfig(path, 'dom').moduleName)
-      const multi = checkLength(filteredChildren),
-        markers = config.hydratable && multi
+      const insert = registerImportMethod(path, 'insert', getRendererConfig(path, 'dom').moduleName)
+      const multi = checkLength(filteredChildren)
+      const markers = config.hydratable && multi
       // boxed by textNodes
       if (markers || wrappedByText(childNodes, index)) {
         let exprId, contentId
@@ -1741,8 +1744,8 @@ function transformChildren$2(path, results, config) {
 }
 
 function createPlaceholder(path, results, tempPath, i, char) {
-  const exprId = path.scope.generateUidIdentifier('el$'),
-    config = getConfig(path)
+  const exprId = path.scope.generateUidIdentifier('el$')
+  const config = getConfig(path)
   let contentId
   results.template += `<!${char}>`
   if (config.hydratable && char === '/') {
@@ -1883,7 +1886,7 @@ function processSpreads$1(path, attributes, { elem, isSVG, hasChildren, wrapCond
         isContainer && isDynamic(attribute.get('value').get('expression'), { checkMember: true })
       if (dynamic) {
         const id = convertJSXIdentifier(node.name)
-        let expr =
+        const expr =
           wrapConditionals &&
           (t__namespace.isLogicalExpression(node.value.expression) ||
             t__namespace.isConditionalExpression(node.value.expression))
@@ -2235,18 +2238,18 @@ function transformElement$2(path, info) {
   if (path.node.openingElement.attributes.some(a => t__namespace.isJSXSpreadAttribute(a)))
     return createElement(path, { ...info, ...config })
 
-  const tagName = getTagName(path.node),
-    voidTag = VoidElements.indexOf(tagName) > -1,
-    results = {
-      template: [`<${tagName}`],
-      templateValues: [],
-      declarations: [],
-      exprs: [],
-      dynamics: [],
-      tagName,
-      wontEscape: path.node.wontEscape,
-      renderer: 'ssr'
-    }
+  const tagName = getTagName(path.node)
+  const voidTag = VoidElements.indexOf(tagName) > -1
+  const results = {
+    template: [`<${tagName}`],
+    templateValues: [],
+    declarations: [],
+    exprs: [],
+    dynamics: [],
+    tagName,
+    wontEscape: path.node.wontEscape,
+    renderer: 'ssr'
+  }
   if (tagName === 'script' || tagName === 'style') path.doNotEscape = true
 
   if (info.topLevel && config.hydratable) {
@@ -2418,13 +2421,13 @@ function transformToObject(attrName, attributes, selectedAttributes) {
 }
 
 function normalizeAttributes(path) {
-  const attributes = path.get('openingElement').get('attributes'),
-    styleAttributes = attributes.filter(
-      a => t__namespace.isJSXNamespacedName(a.node.name) && a.node.name.namespace.name === 'style'
-    ),
-    classNamespaceAttributes = attributes.filter(
-      a => t__namespace.isJSXNamespacedName(a.node.name) && a.node.name.namespace.name === 'class'
-    )
+  const attributes = path.get('openingElement').get('attributes')
+  const styleAttributes = attributes.filter(
+    a => t__namespace.isJSXNamespacedName(a.node.name) && a.node.name.namespace.name === 'style'
+  )
+  const classNamespaceAttributes = attributes.filter(
+    a => t__namespace.isJSXNamespacedName(a.node.name) && a.node.name.namespace.name === 'class'
+  )
   if (classNamespaceAttributes.length)
     transformToObject('classList', attributes, classNamespaceAttributes)
   const classAttributes = attributes.filter(
@@ -2436,12 +2439,12 @@ function normalizeAttributes(path) {
   )
   // combine class propertoes
   if (classAttributes.length > 1) {
-    const first = classAttributes[0].node,
-      values = [],
-      quasis = [t__namespace.templateElement({ raw: '' })]
+    const first = classAttributes[0].node
+    const values = []
+    const quasis = [t__namespace.templateElement({ raw: '' })]
     for (let i = 0; i < classAttributes.length; i++) {
-      const attr = classAttributes[i].node,
-        isLast = i === classAttributes.length - 1
+      const attr = classAttributes[i].node
+      const isLast = i === classAttributes.length - 1
       if (!t__namespace.isJSXExpressionContainer(attr.value)) {
         const prev = quasis.pop()
         quasis.push(
@@ -2476,22 +2479,22 @@ function normalizeAttributes(path) {
 }
 
 function transformAttributes$1(path, results, info) {
-  const tagName = getTagName(path.node),
-    isSVG = SVGElements.has(tagName),
-    hasChildren = path.node.children.length > 0,
-    attributes = normalizeAttributes(path)
+  const tagName = getTagName(path.node)
+  const isSVG = SVGElements.has(tagName)
+  const hasChildren = path.node.children.length > 0
+  const attributes = normalizeAttributes(path)
   let children
 
   attributes.forEach(attribute => {
     const node = attribute.node
 
-    let value = node.value,
-      key = t__namespace.isJSXNamespacedName(node.name)
-        ? `${node.name.namespace.name}:${node.name.name.name}`
-        : node.name.name,
-      reservedNameSpace =
-        t__namespace.isJSXNamespacedName(node.name) &&
-        reservedNameSpaces.has(node.name.namespace.name)
+    let value = node.value
+    let key = t__namespace.isJSXNamespacedName(node.name)
+      ? `${node.name.namespace.name}:${node.name.name.name}`
+      : node.name.name
+    const reservedNameSpace =
+      t__namespace.isJSXNamespacedName(node.name) &&
+      reservedNameSpaces.has(node.name.namespace.name)
     if (
       ((t__namespace.isJSXNamespacedName(node.name) && reservedNameSpace) ||
         ChildProperties.has(key)) &&
@@ -2575,8 +2578,8 @@ function transformAttributes$1(path, results, info) {
             t__namespace.isObjectExpression(value.expression) &&
             !value.expression.properties.some(p => t__namespace.isSpreadElement(p))
           ) {
-            const values = [],
-              quasis = [t__namespace.templateElement({ raw: '' })]
+            const values = []
+            const quasis = [t__namespace.templateElement({ raw: '' })]
             transformClasslistObject(path, value.expression, values, quasis)
             if (!values.length) value.expression = t__namespace.stringLiteral(quasis[0].value.raw)
             else if (values.length === 1 && !quasis[0].value.raw && !quasis[1].value.raw) {
@@ -2662,8 +2665,8 @@ function transformClasslistObject(path, expr, values, quasis) {
 function transformChildren$1(path, results, { hydratable }) {
   const doNotEscape = path.doNotEscape
   const filteredChildren = filterChildren(path.get('children'))
-  const multi = checkLength(filteredChildren),
-    markers = hydratable && multi
+  const multi = checkLength(filteredChildren)
+  const markers = hydratable && multi
   filteredChildren.forEach(node => {
     if (t__namespace.isJSXElement(node.node) && getTagName(node.node) === 'head') {
       const child = transformNode(node, { doNotEscape, hydratable: false })
@@ -2710,38 +2713,38 @@ function transformChildren$1(path, results, { hydratable }) {
 }
 
 function createElement(path, { topLevel, hydratable }) {
-  const tagName = getTagName(path.node),
-    config = getConfig(path),
-    attributes = normalizeAttributes(path)
+  const tagName = getTagName(path.node)
+  const config = getConfig(path)
+  const attributes = normalizeAttributes(path)
 
-  const filteredChildren = filterChildren(path.get('children')),
-    multi = checkLength(filteredChildren),
-    markers = hydratable && multi,
-    childNodes = filteredChildren.reduce((memo, path) => {
-      if (t__namespace.isJSXText(path.node)) {
-        const v = htmlEntities.decode(trimWhitespace(path.node.extra.raw))
-        if (v.length) memo.push(t__namespace.stringLiteral(v))
-      } else {
-        const child = transformNode(path)
-        if (markers && child.exprs.length && !child.spreadElement)
-          memo.push(t__namespace.stringLiteral('<!--$-->'))
-        if (child.exprs.length && !child.spreadElement)
-          child.exprs[0] = escapeExpression(path, child.exprs[0])
-        memo.push(getCreateTemplate(config, path, child)(path, child, true))
-        if (markers && child.exprs.length && !child.spreadElement)
-          memo.push(t__namespace.stringLiteral('<!--/-->'))
-      }
-      return memo
-    }, [])
+  const filteredChildren = filterChildren(path.get('children'))
+  const multi = checkLength(filteredChildren)
+  const markers = hydratable && multi
+  const childNodes = filteredChildren.reduce((memo, path) => {
+    if (t__namespace.isJSXText(path.node)) {
+      const v = htmlEntities.decode(trimWhitespace(path.node.extra.raw))
+      if (v.length) memo.push(t__namespace.stringLiteral(v))
+    } else {
+      const child = transformNode(path)
+      if (markers && child.exprs.length && !child.spreadElement)
+        memo.push(t__namespace.stringLiteral('<!--$-->'))
+      if (child.exprs.length && !child.spreadElement)
+        child.exprs[0] = escapeExpression(path, child.exprs[0])
+      memo.push(getCreateTemplate(config, path, child)(path, child, true))
+      if (markers && child.exprs.length && !child.spreadElement)
+        memo.push(t__namespace.stringLiteral('<!--/-->'))
+    }
+    return memo
+  }, [])
 
   let props
   if (attributes.length === 1) {
     props = [attributes[0].node.argument]
   } else {
     props = []
-    let runningObject = [],
-      dynamicSpread = false,
-      hasChildren = path.node.children.length > 0
+    let runningObject = []
+    let dynamicSpread = false
+    const hasChildren = path.node.children.length > 0
 
     attributes.forEach(attribute => {
       const node = attribute.node
@@ -2763,11 +2766,11 @@ function createElement(path, { topLevel, hydratable }) {
             : node.argument
         )
       } else {
-        const value = node.value || t__namespace.booleanLiteral(true),
-          id = convertJSXIdentifier(node.name),
-          key = t__namespace.isJSXNamespacedName(node.name)
-            ? `${node.name.namespace.name}:${node.name.name.name}`
-            : node.name.name
+        const value = node.value || t__namespace.booleanLiteral(true)
+        const id = convertJSXIdentifier(node.name)
+        const key = t__namespace.isJSXNamespacedName(node.name)
+          ? `${node.name.namespace.name}:${node.name.name.name}`
+          : node.name.name
 
         if (hasChildren && key === 'children') return
         if (
@@ -2784,7 +2787,7 @@ function createElement(path, { topLevel, hydratable }) {
               checkTags: true
             })
           ) {
-            let expr = t__namespace.arrowFunctionExpression([], value.expression)
+            const expr = t__namespace.arrowFunctionExpression([], value.expression)
             runningObject.push(
               t__namespace.objectMethod(
                 'get',
@@ -2828,16 +2831,16 @@ function createElement(path, { topLevel, hydratable }) {
 }
 
 function transformElement$1(path, info) {
-  let tagName = getTagName(path.node),
-    results = {
-      id: path.scope.generateUidIdentifier('el$'),
-      declarations: [],
-      exprs: [],
-      dynamics: [],
-      postExprs: [],
-      tagName,
-      renderer: 'universal'
-    }
+  const tagName = getTagName(path.node)
+  const results = {
+    id: path.scope.generateUidIdentifier('el$'),
+    declarations: [],
+    exprs: [],
+    dynamics: [],
+    postExprs: [],
+    tagName,
+    renderer: 'universal'
+  }
 
   results.declarations.push(
     t__namespace.variableDeclarator(
@@ -2862,9 +2865,9 @@ function transformElement$1(path, info) {
 function transformAttributes(path, results) {
   let children, spreadExpr
   let attributes = path.get('openingElement').get('attributes')
-  const elem = results.id,
-    hasChildren = path.node.children.length > 0,
-    config = getConfig(path)
+  const elem = results.id
+  const hasChildren = path.node.children.length > 0
+  const config = getConfig(path)
 
   // preprocess spreads
   if (attributes.some(attribute => t__namespace.isJSXSpreadAttribute(attribute.node))) {
@@ -2885,12 +2888,12 @@ function transformAttributes(path, results) {
     .forEach(attribute => {
       const node = attribute.node
 
-      let value = node.value,
-        key = t__namespace.isJSXNamespacedName(node.name)
-          ? `${node.name.namespace.name}:${node.name.name.name}`
-          : node.name.name,
-        reservedNameSpace =
-          t__namespace.isJSXNamespacedName(node.name) && node.name.namespace.name === 'use'
+      let value = node.value
+      const key = t__namespace.isJSXNamespacedName(node.name)
+        ? `${node.name.namespace.name}:${node.name.name.name}`
+        : node.name.name
+      const reservedNameSpace =
+        t__namespace.isJSXNamespacedName(node.name) && node.name.namespace.name === 'use'
       if (
         t__namespace.isJSXNamespacedName(node.name) &&
         reservedNameSpace &&
@@ -3028,16 +3031,16 @@ function setAttr(path, elem, name, value, { prevId } = {}) {
 }
 
 function transformChildren(path, results) {
-  const filteredChildren = filterChildren(path.get('children')),
-    multi = checkLength(filteredChildren),
-    childNodes = filteredChildren.map(transformNode).reduce((memo, child) => {
-      if (!child) return memo
-      const i = memo.length
-      if (child.text && i && memo[i - 1].text) {
-        memo[i - 1].template += child.template
-      } else memo.push(child)
-      return memo
-    }, [])
+  const filteredChildren = filterChildren(path.get('children'))
+  const multi = checkLength(filteredChildren)
+  const childNodes = filteredChildren.map(transformNode).reduce((memo, child) => {
+    if (!child) return memo
+    const i = memo.length
+    if (child.text && i && memo[i - 1].text) {
+      memo[i - 1].template += child.template
+    } else memo.push(child)
+    return memo
+  }, [])
 
   const appends = []
   childNodes.forEach((child, index) => {
@@ -3047,14 +3050,14 @@ function transformChildren(path, results) {
         Wrap the usage with a component that would render this element, eg. Canvas`)
     }
     if (child.id) {
-      let insertNode = registerImportMethod(
+      const insertNode = registerImportMethod(
         path,
         'insertNode',
         getRendererConfig(path, 'universal').moduleName
       )
       let insert = child.id
       if (child.text) {
-        let createTextNode = registerImportMethod(
+        const createTextNode = registerImportMethod(
           path,
           'createTextNode',
           getRendererConfig(path, 'universal').moduleName
@@ -3088,7 +3091,7 @@ function transformChildren(path, results) {
       results.exprs.push(...child.exprs)
       results.dynamics.push(...child.dynamics)
     } else if (child.exprs.length) {
-      let insert = registerImportMethod(
+      const insert = registerImportMethod(
         path,
         'insert',
         getRendererConfig(path, 'universal').moduleName
@@ -3162,7 +3165,7 @@ function processSpreads(path, attributes, { elem, hasChildren, wrapConditionals 
         isContainer && isDynamic(attribute.get('value').get('expression'), { checkMember: true })
       if (dynamic) {
         const id = convertJSXIdentifier(node.name)
-        let expr =
+        const expr =
           wrapConditionals &&
           (t__namespace.isLogicalExpression(node.value.expression) ||
             t__namespace.isConditionalExpression(node.value.expression))
@@ -3329,13 +3332,13 @@ function convertComponentIdentifier(node) {
 }
 
 function transformComponent(path) {
-  let exprs = [],
-    config = getConfig(path),
-    tagId = convertComponentIdentifier(path.node.openingElement.name),
-    props = [],
-    runningObject = [],
-    dynamicSpread = false,
-    hasChildren = path.node.children.length > 0
+  let exprs = []
+  const config = getConfig(path)
+  const tagId = convertComponentIdentifier(path.node.openingElement.name)
+  let props = []
+  let runningObject = []
+  let dynamicSpread = false
+  const hasChildren = path.node.children.length > 0
 
   if (config.builtIns.indexOf(tagId.name) > -1 && !path.scope.hasBinding(tagId.name)) {
     const newTagId = registerImportMethod(path, tagId.name)
@@ -3367,11 +3370,11 @@ function transformComponent(path) {
       } else {
         // handle weird babel bug around HTML entities
         const value =
-            (t__namespace.isStringLiteral(node.value)
-              ? t__namespace.stringLiteral(node.value.value)
-              : node.value) || t__namespace.booleanLiteral(true),
-          id = convertJSXIdentifier(node.name),
-          key = id.name
+          (t__namespace.isStringLiteral(node.value)
+            ? t__namespace.stringLiteral(node.value.value)
+            : node.value) || t__namespace.booleanLiteral(true)
+        const id = convertJSXIdentifier(node.name)
+        const key = id.name
         if (hasChildren && key === 'children') return
         if (t__namespace.isJSXExpressionContainer(value))
           if (key === 'ref') {
@@ -3384,11 +3387,11 @@ function transformComponent(path) {
             ) {
               value.expression = value.expression.expression
             }
-            let binding,
-              isFunction =
-                t__namespace.isIdentifier(value.expression) &&
-                (binding = path.scope.getBinding(value.expression.name)) &&
-                binding.kind === 'const'
+            let binding
+            const isFunction =
+              t__namespace.isIdentifier(value.expression) &&
+              (binding = path.scope.getBinding(value.expression.name)) &&
+              binding.kind === 'const'
             if (!isFunction && t__namespace.isLVal(value.expression)) {
               const refIdentifier = path.scope.generateUidIdentifier('_ref$')
               runningObject.push(
@@ -3555,7 +3558,7 @@ function transformComponentChildren(children, config) {
   const filteredChildren = filterChildren(children)
   if (!filteredChildren.length) return
   let dynamic = false
-  let pathNodes = []
+  const pathNodes = []
 
   let transformedChildren = filteredChildren.reduce((memo, path) => {
     if (t__namespace.isJSXText(path.node)) {
@@ -3611,21 +3614,21 @@ function transformComponentChildren(children, config) {
 }
 
 function transformFragmentChildren(children, results, config) {
-  const filteredChildren = filterChildren(children),
-    childNodes = filteredChildren.reduce((memo, path) => {
-      if (t__namespace.isJSXText(path.node)) {
-        const v = htmlEntities.decode(trimWhitespace(path.node.extra.raw))
-        if (v.length) memo.push(t__namespace.stringLiteral(v))
-      } else {
-        const child = transformNode(path, {
-          topLevel: true,
-          fragmentChild: true,
-          lastElement: true
-        })
-        memo.push(getCreateTemplate(config, path, child)(path, child, true))
-      }
-      return memo
-    }, [])
+  const filteredChildren = filterChildren(children)
+  const childNodes = filteredChildren.reduce((memo, path) => {
+    if (t__namespace.isJSXText(path.node)) {
+      const v = htmlEntities.decode(trimWhitespace(path.node.extra.raw))
+      if (v.length) memo.push(t__namespace.stringLiteral(v))
+    } else {
+      const child = transformNode(path, {
+        topLevel: true,
+        fragmentChild: true,
+        lastElement: true
+      })
+      memo.push(getCreateTemplate(config, path, child)(path, child, true))
+    }
+    return memo
+  }, [])
   results.exprs.push(
     childNodes.length === 1 ? childNodes[0] : t__namespace.arrayExpression(childNodes)
   )
@@ -3705,7 +3708,7 @@ function transformNode(path, info = {}) {
   if (t__namespace.isJSXElement(node)) {
     return transformElement(config, path, info)
   } else if (t__namespace.isJSXFragment(node)) {
-    let results = { template: '', declarations: [], exprs: [], dynamics: [] }
+    const results = { template: '', declarations: [], exprs: [], dynamics: [] }
     // <><div /><Component /></>
     transformFragmentChildren(path.get('children'), results, config)
     return results
@@ -3799,14 +3802,14 @@ function getCreateTemplate(config, path, result) {
 
 function transformElement(config, path, info = {}) {
   const node = path.node
-  let tagName = getTagName(node)
+  const tagName = getTagName(node)
+
+  // <Component ...></Component>
+  if (isComponent(tagName)) return transformComponent(path)
   // new Add tagCollector
   if (typeof config.tagCollector === 'function') {
     config.tagCollector(tagName)
   }
-  // <Component ...></Component>
-  if (isComponent(tagName)) return transformComponent(path)
-
   // <div ...></div>
   // const element = getTransformElemet(config, path, tagName);
 
@@ -3840,8 +3843,8 @@ var postprocess = path => {
     )
   }
   if (path.scope.data.templates?.length) {
-    let domTemplates = path.scope.data.templates.filter(temp => temp.renderer === 'dom')
-    let ssrTemplates = path.scope.data.templates.filter(temp => temp.renderer === 'ssr')
+    const domTemplates = path.scope.data.templates.filter(temp => temp.renderer === 'dom')
+    const ssrTemplates = path.scope.data.templates.filter(temp => temp.renderer === 'ssr')
     domTemplates.length > 0 && appendTemplates$1(path, domTemplates)
     ssrTemplates.length > 0 && appendTemplates(path, ssrTemplates)
   }

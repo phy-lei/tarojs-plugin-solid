@@ -78,8 +78,8 @@ importers:
         specifier: ^29.3.1
         version: 29.7.0(@babel/core@7.23.7)
       babel-plugin-tester:
-        specifier: ^10.1.0
-        version: 10.1.0(@babel/core@7.23.7)
+        specifier: ^11.0.4
+        version: 11.0.4(@babel/core@7.23.7)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@18.19.8)(ts-node@10.9.2)
@@ -3719,13 +3719,6 @@ packages:
     resolution: {integrity: sha512-v+dxizsFVyXgD3EpFuqT9YjdEjbJmPxNf1QIX9ohZOhxh1ZF2yhqv3vYaeum9lg3VghhxS5S0a6yldN9J9lPEQ==}
     dev: true
 
-  /@types/babel-plugin-tester@9.0.10:
-    resolution: {integrity: sha512-X+n3nZb8qIZ3a07qt7B5ONfptAZJ6nWLgU5I4U+gm0dRgtcjL+73P2tUkQAJ/iIbRF72BlW/2of5J0qbjlmsBw==}
-    dependencies:
-      '@types/babel__core': 7.20.5
-      '@types/prettier': 2.7.3
-    dev: true
-
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
     dependencies:
@@ -3969,10 +3962,6 @@ packages:
 
   /@types/parse-json@4.0.2:
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
-    dev: true
-
-  /@types/prettier@2.7.3:
-    resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
     dev: true
 
   /@types/prop-types@15.7.11:
@@ -5096,17 +5085,20 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /babel-plugin-tester@10.1.0(@babel/core@7.23.7):
-    resolution: {integrity: sha512-4P2tNaM/Mtg6ytA9YAqmgONnMYqWvdbGDuwRTpIIC9yFZGQrEHoyvDPCx+X1QALAufVb5DKieOPGj5dffiEiNg==}
-    engines: {node: '>=10.13', npm: '>=6'}
+  /babel-plugin-tester@11.0.4(@babel/core@7.23.7):
+    resolution: {integrity: sha512-cqswtpSPo0e++rZB0l/54EG17LL25l9gLgh59yXfnmNxX+2lZTIOpx2zt4YI9QIClVXc8xf63J6yWwKkzy0jNg==}
+    engines: {node: ^14.20.0 || ^16.16.0 || >=18.5.0}
     peerDependencies:
-      '@babel/core': ^7.11.6
+      '@babel/core': '>=7.11.6'
     dependencies:
       '@babel/core': 7.23.7
-      '@types/babel-plugin-tester': 9.0.10
+      core-js: 3.35.0
+      debug: 4.3.4
       lodash.mergewith: 4.6.2
       prettier: 2.8.8
       strip-indent: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /babel-plugin-transform-imports-api@1.0.0:
