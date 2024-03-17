@@ -1,4 +1,4 @@
-import { useLoad } from '@tarojs/taro'
+import { useLoad, useDidShow } from '@tarojs/taro'
 import Counter from '@/components/Counter'
 import { createSignal } from 'solid-js'
 import styles from './index.module.css'
@@ -7,8 +7,12 @@ export default function Index() {
   const [color, setColor] = createSignal('red')
   const [cls, setCls] = createSignal('')
 
+  useDidShow(() => {
+    console.log('%c [ xxxuseDidShow]', 'font-size:13px; background:pink; color:#bf2c9f;', 234)
+  })
+
   useLoad(() => {
-    console.log('%c [ xxx ]', 'font-size:13px; background:pink; color:#bf2c9f;', 123)
+    console.log('%c [ xxx ]', 'font-size:13px; background:pink; color:#bf2c9f;', 12313)
   })
 
   return (

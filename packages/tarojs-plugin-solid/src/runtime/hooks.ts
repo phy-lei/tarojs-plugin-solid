@@ -33,6 +33,7 @@ const createTaroHook = (lifecycle: keyof PageLifeCycle | keyof AppInstance) => {
         })
       }
 
+
       if (isFunction(inst![lifecycle])) {
         inst![lifecycle] = [inst?.[lifecycle], fn]
       } else {
@@ -56,8 +57,8 @@ const createTaroHook = (lifecycle: keyof PageLifeCycle | keyof AppInstance) => {
 }
 
 /** LifeCycle */
-export const useDidHide = createTaroHook('componentDidHide')
-export const useDidShow = createTaroHook('componentDidShow')
+export const useDidHide = createTaroHook('onHide')
+export const useDidShow = createTaroHook('onShow')
 
 /** App */
 export const useError = createTaroHook('onError')
