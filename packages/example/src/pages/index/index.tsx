@@ -31,6 +31,7 @@ export default function Index() {
       <view>{Math.random()}</view>
       {color() ? <icon type="success"></icon> : null}
       <input type="text" />
+      <view id="portal"></view>
     </view>
   )
 }
