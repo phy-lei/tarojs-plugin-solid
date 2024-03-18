@@ -9,18 +9,23 @@ function Tab2() {
   return <view>tab2</view>
 }
 
+const componentMap = {
+  Tab,
+  Tab2
+}
+
 export default function Counter(props) {
-  const [com, setCom] = createSignal<any>(Tab)
+  const [com, setCom] = createSignal('Tab')
   const [count, setCount] = createSignal(props.count)
 
   const add = () => {
     setCount(count() + 1)
-    setCom(Tab2)
+    setCom('Tab2')
   }
 
   const sub = () => {
     setCount(count() - 1)
-    setCom(Tab)
+    setCom('Tab')
   }
 
   return (
@@ -35,8 +40,7 @@ export default function Counter(props) {
           hello portal {count()} {Math.random()}
         </view>
       </Portal>
-      <Dynamic component={com()}></Dynamic>
-      <Dynamic component={'view'}>2222</Dynamic>
+      <Dynamic component={componentMap[com()]}></Dynamic>
     </>
   )
 }
