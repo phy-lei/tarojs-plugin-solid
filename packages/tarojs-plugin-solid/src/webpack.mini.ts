@@ -1,7 +1,6 @@
 import { getLoaderMeta } from './loader-meta'
 
 export function modifyMiniWebpackChain (chain) {
-
   setAlias(chain)
   setLoader(chain)
 }
