@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "dev": "rollup -c -w --bundleConfigAsCjs",
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "pnpm run build:clean && rollup -c --bundleConfigAsCjs",
+    "build:clean": "rimraf dist/ "
   },
   "repository": {
     "type": "git",
