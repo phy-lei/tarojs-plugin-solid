@@ -1,5 +1,5 @@
 import { JSX, JSXElement } from 'solid-js'
-
+import { TaroElement } from '@tarojs/runtime'
 import { AdProps } from '@tarojs/components/types/Ad'
 import { AdCustomProps } from '@tarojs/components/types/AdCustom'
 import { AudioProps } from '@tarojs/components/types/Audio'
@@ -70,7 +70,6 @@ interface SlimProps {
   children?: JSXElement
   class?: string
   style?: string | JSX.CSSProperties | undefined
-  classList?: { [key: string]: boolean | undefined }
   innerHTML?: string
 }
 /** 联合类型不能用omit（比如picker） */
@@ -78,7 +77,7 @@ type DistributiveOmit<T, K extends keyof T> = T extends unknown ? Omit<T, K> : n
 
 export type RemoveReactAttribute = 'children' | 'className' | 'style' | 'key' | 'ref' | 'dangerouslySetInnerHTML'
 
-export type TransformReact2SolidType<P extends StandardProps = Record<string, never>> = DistributiveOmit<P, RemoveReactAttribute> & SlimProps & JSX.DirectiveAttributes & JSX.CustomAttributes<P>
+export type TransformReact2SolidType<P extends StandardProps = Record<string, never>> = DistributiveOmit<P, RemoveReactAttribute> & SlimProps & JSX.DirectiveAttributes & JSX.CustomAttributes<TaroElement>
 
 declare module 'solid-js' {
   namespace JSX {

@@ -3,8 +3,9 @@ import Counter from '@/components/Counter'
 import { createSignal } from 'solid-js'
 import useDirective from '@/useHooks/useDirectives'
 import styles from './index.module.css'
+import { TaroElement } from '@tarojs/runtime'
 
-let myDiv: HTMLDivElement
+let myDiv: TaroElement
 
 export default function Index() {
   const { model } = useDirective()
