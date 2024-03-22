@@ -10,6 +10,7 @@
     "build": "pnpm -r --filter=./packages/* run build",
     "lint": "eslint packages/ --ext .js --ext .ts --ext .tsx",
     "publish": "pnpm run build && pnpm run release:only",
+    "version-packages": "changeset version",
     "bump": "changeset add",
     "release:only": "changeset publish"
   },
