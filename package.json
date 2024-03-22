@@ -9,8 +9,9 @@
     "dev": "pnpm -r --filter=./packages/* run dev",
     "build": "pnpm -r --filter=./packages/* run build",
     "lint": "eslint packages/ --ext .js --ext .ts --ext .tsx",
-    "edit-version": "node ./scripts/edit-version.js",
-    "pub": "pnpm run edit-version && pnpm run build"
+    "publish": "pnpm run build && pnpm run release:only",
+    "bump": "changeset add",
+    "release:only": "changeset publish"
   },
   "repository": {
     "type": "git",

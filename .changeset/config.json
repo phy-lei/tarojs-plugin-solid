@@ -4,7 +4,7 @@
   "commit": false,
   "fixed": [],
   "linked": ["tarojs-solid-custom-render", "tarojs-plugin-solid"],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
