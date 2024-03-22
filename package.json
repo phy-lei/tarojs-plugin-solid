@@ -12,7 +12,7 @@
     "publish": "pnpm run build && pnpm run release:only",
     "version-packages": "changeset version",
     "bump": "changeset add",
-    "release:only": "changeset publish"
+    "release:only": "changeset publish --tag"
   },
   "repository": {
     "type": "git",
