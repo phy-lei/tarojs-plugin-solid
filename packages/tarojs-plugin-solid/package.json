@@ -1,6 +1,6 @@
 {
   "name": "tarojs-plugin-solid",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "taro插件，支持使用 Solid 开发小程序",
   "main": "index.js",
   "types": "types/taro-components-solid.d.ts",
