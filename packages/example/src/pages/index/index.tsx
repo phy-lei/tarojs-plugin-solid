@@ -4,6 +4,8 @@ import { createSignal } from 'solid-js'
 import useDirective from '@/useHooks/useDirectives'
 import styles from './index.module.css'
 
+let myDiv: HTMLDivElement
+
 export default function Index() {
   const { model } = useDirective()
   const [color, setColor] = createSignal('red')
@@ -14,17 +16,26 @@ export default function Index() {
   })
 
   useLoad(() => {
-    console.log('%c [ xxx ]', 'font-size:13px; background:pink; color:#bf2c9f;', 12313)
+    console.log('%c [ xxx ]', 'font-size:13px; background:pink; color:#bf2c9f;', myDiv)
   })
 
   return (
     <view class="index">
-      <view>
+      <view ref={myDiv}>
         <text style={`color: ${color()}`}>Hello world! </text>
         <view>{Math.random()}</view>
       </view>
       <view>
-        <text class={cls()}>Hello world2! </text>
+        <text
+          class={cls()}
+          classList={{
+            orange: color() === 'red',
+            yellow: color() !== 'red',
+            fix: color() === 'red'
+          }}
+        >
+          Hello world2!
+        </text>
       </view>
       <button onClick={() => setCls(styles['bold'])}>set class</button>
       <button onClick={() => setColor('blue')}>set style</button>
