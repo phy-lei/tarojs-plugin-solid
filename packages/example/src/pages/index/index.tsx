@@ -1,9 +1,11 @@
 import { useLoad, useDidShow } from '@tarojs/taro'
 import Counter from '@/components/Counter'
 import { createSignal } from 'solid-js'
+import useDirective from '@/useHooks/useDirectives'
 import styles from './index.module.css'
 
 export default function Index() {
+  const { model } = useDirective()
   const [color, setColor] = createSignal('red')
   const [cls, setCls] = createSignal('')
 
@@ -30,7 +32,7 @@ export default function Index() {
       <Counter count={0}></Counter>
       <view>{Math.random()}</view>
       {color() ? <icon type="success"></icon> : null}
-      <input type="text" />
+      <input type="text" use:model={[color, setColor]} />
       <view id="portal"></view>
     </view>
   )

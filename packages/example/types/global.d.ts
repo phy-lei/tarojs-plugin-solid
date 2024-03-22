@@ -1,5 +1,5 @@
 /// <reference types="@tarojs/taro" />
-/// <reference path="../node_modules/tarojs-plugin-solid/types/taro-components-solid.d.ts" />
+/// <reference path="./solid-js.d.ts" />
 
 declare module '*.png';
 declare module '*.gif';

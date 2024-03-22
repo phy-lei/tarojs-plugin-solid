@@ -78,9 +78,9 @@ type DistributiveOmit<T, K extends keyof T> = T extends unknown ? Omit<T, K> : n
 
 export type RemoveReactAttribute = 'children' | 'className' | 'style' | 'key' | 'ref' | 'dangerouslySetInnerHTML'
 
-export type TransformReact2SolidType<P extends StandardProps = Record<string, never>> = DistributiveOmit<P, RemoveReactAttribute> & SlimProps
+export type TransformReact2SolidType<P extends StandardProps = Record<string, never>> = DistributiveOmit<P, RemoveReactAttribute> & SlimProps & JSX.DirectiveAttributes
 
-declare module "solid-js" {
+declare module 'solid-js' {
   namespace JSX {
     interface IntrinsicElements {
       /** 视图容器 */
