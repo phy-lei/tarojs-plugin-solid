@@ -3,7 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": ["tarojs-solid-custom-render", "tarojs-plugin-solid"],
+  "linked": [["tarojs-solid-custom-render", "tarojs-plugin-solid"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
