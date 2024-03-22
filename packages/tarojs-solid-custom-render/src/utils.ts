@@ -16,22 +16,6 @@ function isEventName (s: string) {
   return s.startsWith('on')
 }
 
-function diffClassList (newVal: ClassList, oldVal: ClassList) {
-  const result: ClassList = {}
-  for (const key in oldVal) {
-    if (newVal[key] !== oldVal[key]) {
-      result[key] = newVal[key]
-    }
-  }
-  for (const key in newVal) {
-    if (result.hasOwnProperty(key)) {
-      continue
-    }
-    result[key] = newVal[key]
-  }
-  return result
-}
-
 function setEvent (
   dom: TaroElement,
   name: string,
@@ -62,51 +46,59 @@ function setEvent (
   }
 }
 
+// 优化后的代码
 export function setProperty (
   dom: TaroElement,
   name: string,
   value: any,
   oldValue?: any
 ) {
-
-  if (name === 'key' || name === 'children' || name === 'ref') {
-    // skip
-  } else if (name === 'classList') {
-    const map = diffClassList(value as ClassList, oldValue as ClassList)
-    for (const key in map) {
-      if (key === '') {
-        continue
-      }
-      if (map[key]) {
-        (dom as any).classList.add(key)
-      } else {
-        (dom as any).classList.remove(key)
-      }
-    }
+  if (name === 'key' || name === 'children' || name === 'ref') return
+  if (name === 'classList') {
+    updateClassList(dom, value as ClassList)
   } else if (isEventName(name)) {
     setEvent(dom, name, value, oldValue)
   } else if (name === 'dangerouslySetInnerHTML') {
-    const newHtml = (value as DangerouslySetInnerHTML)?.__html ?? ''
-    const oldHtml = (oldValue as DangerouslySetInnerHTML)?.__html ?? ''
-    if (newHtml || oldHtml) {
-      if (oldHtml !== newHtml) {
-        dom.innerHTML = newHtml
-      }
-    }
+    updateInnerHTML(dom, value as DangerouslySetInnerHTML, oldValue as DangerouslySetInnerHTML)
   } else if (!isFunction(value)) {
-    if (value == null) {
-      dom.removeAttribute(name)
+    updateAttribute(dom, name, value)
+  }
+}
+
+function updateClassList (dom: TaroElement, newValue: ClassList) {
+  const [addList, removeList] = [[], []]
+  for (const key in newValue) {
+    if (newValue[key]) {
+      addList.push(key)
     } else {
-      // 处理对象类型的style样式
-      if (name === 'style' && isObject(value)) {
-        value = Object.keys(value).reduce((acc, key) => {
-          acc.push(`${key}: ${value[key]}`)
-          return acc
-        }, []).join(';')
-      }
-      dom.setAttribute(name, value as string)
+      removeList.push(key)
+    }
+  }
+  (dom.classList as any).add(...addList);
+  (dom.classList as any).remove(...removeList)
+}
+
+function updateInnerHTML (dom: TaroElement, newValue: DangerouslySetInnerHTML, oldValue: DangerouslySetInnerHTML) {
+  const newHtml = newValue?.__html ?? ''
+  const oldHtml = oldValue?.__html ?? ''
+  if (newHtml || oldHtml) {
+    if (newHtml !== oldHtml) {
+      dom.innerHTML = newHtml
     }
   }
 }
 
-
+function updateAttribute (dom: TaroElement, name: string, value: any) {
+  if (value == null) {
+    dom.removeAttribute(name)
+  } else {
+    // 处理对象类型的style样式
+    if (name === 'style' && isObject(value)) {
+      value = Object.keys(value).reduce((acc, key) => {
+        acc.push(`${key}: ${value[key]}`)
+        return acc
+      }, []).join(';')
+    }
+    dom.setAttribute(name, value as string)
+  }
+}
