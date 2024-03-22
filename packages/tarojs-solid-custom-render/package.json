@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@tarojs/runtime": ">=3.0.0",
     "@tarojs/shared": ">=3.0.0",
-    "babel-preset-solid": ">=1",
+    "babel-preset-solid-taro": ">=1",
     "solid-js": ">=1"
   },
   "publishConfig": {
