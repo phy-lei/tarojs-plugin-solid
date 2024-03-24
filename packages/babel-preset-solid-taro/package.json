@@ -22,7 +22,8 @@
   "author": "phy-lei",
   "license": "MIT",
   "peerDependencies": {
-    "@babel/core": "^7.20.12"
+    "@babel/core": "^7.20.12",
+    "babel-plugin-jsx-dom-expressions": "^0.37.19"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
