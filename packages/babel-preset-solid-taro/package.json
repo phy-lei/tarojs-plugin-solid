@@ -21,9 +21,12 @@
   ],
   "author": "phy-lei",
   "license": "MIT",
-  "peerDependencies": {
-    "@babel/core": "^7.20.12",
-    "babel-plugin-jsx-dom-expressions": "^0.37.19"
+  "dependencies": {
+    "@babel/helper-module-imports": "7.18.6",
+    "@babel/plugin-syntax-jsx": "^7.18.6",
+    "@babel/types": "^7.20.7",
+    "html-entities": "2.3.3",
+    "validate-html-nesting": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
