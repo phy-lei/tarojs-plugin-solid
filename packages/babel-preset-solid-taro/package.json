@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-solid-taro",
-  "version": "0.38.0",
+  "version": "3.0.0",
   "description": "babel-preset-solid的babel插件，拓展了收集tagName的功能",
   "main": "index.js",
   "files": [
