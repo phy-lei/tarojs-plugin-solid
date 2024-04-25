@@ -79,7 +79,81 @@ export type RemoveReactAttribute = 'children' | 'className' | 'style' | 'key' | 
 
 export type TransformReact2SolidType<P extends StandardProps = Record<string, never>> = DistributiveOmit<P, RemoveReactAttribute> & SlimProps & JSX.DirectiveAttributes & JSX.CustomAttributes<TaroElement>
 
-declare module 'solid-js' {
+type Components<T> = (props: TransformReact2SolidType<T>) => JSXElement;
+
+
+/** 视图容器 */
+export declare const Block: Components<StandardProps>
+export declare const CoverImage: Components<CoverImageProps>
+export declare const CoverView: Components<CoverViewProps>
+export declare const GridView: Components<GridViewProps>
+export declare const ListView: Components<ListViewProps>
+export declare const MatchMedia: Components<MatchMediaProps>
+export declare const MovableArea: Components<MovableAreaProps>
+export declare const MovableView: Components<MovableViewProps>
+export declare const PageContainer: Components<PageContainerProps>
+export declare const RootPortal: Components<RootPortalProps>
+export declare const ScrollView: Components<ScrollViewProps>
+export declare const ShareElement: Components<ShareElementProps>
+export declare const StickyHeader: Components<StickyHeaderProps>
+export declare const StickySection: Components<StickySectionProps>
+export declare const Swiper: Components<SwiperProps>
+export declare const SwiperItem: Components<SwiperItemProps>
+export declare const View: Components<ViewProps>
+/** 基础内容 */
+export declare const Icon: Components<IconProps>
+export declare const Progress: Components<ProgressProps>
+export declare const RichText: Components<RichTextProps>
+export declare const Text: Components<TextProps>
+/** 表单组件 */
+export declare const Button: Components<ButtonProps>
+export declare const Checkbox: Components<CheckboxProps>
+export declare const CheckboxGroup: Components<CheckboxGroupProps>
+export declare const Editor: Components<EditorProps>
+export declare const Form: Components<FormProps>
+export declare const Input: Components<InputProps>
+export declare const KeyboardAccessory: Components<KeyboardAccessoryProps>
+export declare const Label: Components<LabelProps>
+export declare const Picker: Components<PickerMultiSelectorProps | PickerTimeProps | PickerDateProps | PickerRegionProps | PickerSelectorProps>
+export declare const PickerView: Components<PickerViewProps>
+export declare const PickerViewColumn: Components<PickerViewColumnProps>
+export declare const Radio: Components<RadioProps>
+export declare const RadioGroup: Components<RadioGroupProps>
+export declare const Slider: Components<SliderProps>
+export declare const Switch: Components<SwitchProps>
+export declare const Textarea: Components<TextareaProps>
+/** 导航 */
+export declare const FunctionalPageNavigator: Components<FunctionalPageNavigatorProps>
+export declare const Navigator: Components<NavigatorProps>
+export declare const NavigationBar: Components<NavigationBarProps>
+/** 媒体组件 */
+export declare const Audio: Components<AudioProps>
+export declare const Camera: Components<CameraProps>
+export declare const ChannelLive: Components<ChannelLiveProps>
+export declare const ChannelVideo: Components<ChannelVideoProps>
+export declare const Image: Components<ImageProps>
+export declare const LivePlayer: Components<LivePlayerProps>
+export declare const LivePusher: Components<LivePusherProps>
+export declare const Video: Components<VideoProps>
+export declare const VoipRoom: Components<VoipRoomProps>
+/** 地图 */
+export declare const Map: Components<MapProps>
+/** 画布 */
+export declare const Canvas: Components<CanvasProps>
+/** 开放能力 */
+export declare const Ad: Components<AdProps>
+export declare const AdCustom: Components<AdCustomProps>
+export declare const OfficialAccount: Components<OfficialAccountProps>
+export declare const OpenData: Components<OpenDataProps>
+export declare const WebView: Components<WebViewProps>
+/** 配置节点 */
+export declare const PageMeta: Components<PageMetaProps>
+
+export declare const CustomWrapper: Components<CustomWrapperProps>
+export declare const Slot: Components<SlotProps>
+export declare const NativeSlot: Components<NativeSlotProps>
+
+declare global {
   namespace JSX {
     interface IntrinsicElements {
       /** 视图容器 */
@@ -219,3 +293,5 @@ declare module 'solid-js' {
     }
   }
 }
+
+

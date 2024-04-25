@@ -1,4 +1,5 @@
-import '../node_modules/tarojs-plugin-solid/types/taro-components-solid.d.ts'
+import '../node_modules/tarojs-plugin-solid/types/taro-components-solid'
+
 
 declare module 'solid-js' {
   namespace JSX {

@@ -290,6 +290,9 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^15.2.3
         version: 15.2.3(rollup@4.9.5)
+      '@tarojs/components':
+        specifier: 3.6.23
+        version: 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23)(@tarojs/shared@3.6.23)
       '@tarojs/helper':
         specifier: 3.6.23
         version: 3.6.23
@@ -3156,6 +3159,38 @@ packages:
       - '@types/webpack-dev-server'
       - postcss
       - vue
+
+  /@tarojs/components@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23)(@tarojs/shared@3.6.23):
+    resolution: {integrity: sha512-XN/h+qXXbuTdlVUQm5swzzHiF56mjv0VRL73OriS2AV1BUFQoyhSGS4FshkWGl2Jbht0Uv2+KqG29d2ovnzBbw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-native': '*'
+      vue: '*'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-native':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@stencil/core': 2.22.3
+      '@tarojs/components-advanced': 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23)(@tarojs/shared@3.6.23)(@tarojs/taro@3.6.23)
+      '@tarojs/taro': 3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23)(@types/react@18.0.0)(postcss@8.4.33)
+      classnames: 2.5.1
+      hls.js: 1.5.1
+      resolve-pathname: 3.0.0
+      swiper: 6.8.0
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - '@tarojs/helper'
+      - '@tarojs/runtime'
+      - '@tarojs/shared'
+      - '@types/webpack'
+      - '@types/webpack-dev-server'
+      - postcss
+      - react
+    dev: true
 
   /@tarojs/components@3.6.23(@tarojs/helper@3.6.23)(@tarojs/runtime@3.6.23)(@tarojs/shared@3.6.23)(@types/react@18.0.0)(postcss@8.4.33)(react@18.0.0):
     resolution: {integrity: sha512-XN/h+qXXbuTdlVUQm5swzzHiF56mjv0VRL73OriS2AV1BUFQoyhSGS4FshkWGl2Jbht0Uv2+KqG29d2ovnzBbw==}

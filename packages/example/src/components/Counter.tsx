@@ -1,13 +1,14 @@
+import { View, Text, Button } from '@tarojs/components'
 import { createSignal } from 'solid-js'
 import { Portal, Dynamic } from 'solid-js/web'
 import { render } from 'solid-js/web/dist/web.cjs'
 import './counter.css'
 
 function Tab() {
-  return <view>tab</view>
+  return <View>tab</View>
 }
 function Tab2() {
-  return <view>tab2</view>
+  return <View>tab2</View>
 }
 
 const componentMap = {
@@ -39,16 +40,17 @@ export default function Counter(props) {
 
   return (
     <>
-      <view class="flex">
-        <button onClick={add}>+</button>
-        <text class="add">{count()}</text>
-        <button onClick={sub}>-</button>
-      </view>
-      <view id="kiana"></view>
+      <View class="flex">
+        <button></button>
+        <Button onClick={add}>+</Button>
+        <Text class="add">{count()}</Text>
+        <Button onClick={sub}>-</Button>
+      </View>
+      <View id="kiana"></View>
       <Portal mount={document.getElementById('portal')}>
-        <view>
+        <View>
           hello portal {count()} {Math.random()}
-        </view>
+        </View>
       </Portal>
       <Dynamic component={componentMap[com()]}></Dynamic>
     </>

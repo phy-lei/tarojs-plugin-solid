@@ -1,4 +1,5 @@
 import { useLoad, useDidShow } from '@tarojs/taro'
+import { View, Text, Button, Input, Icon } from '@tarojs/components'
 import Counter from '@/components/Counter'
 import { createSignal } from 'solid-js'
 import useDirective from '@/useHooks/useDirectives'
@@ -21,13 +22,13 @@ export default function Index() {
   })
 
   return (
-    <view class="index">
-      <view ref={myDiv}>
-        <text style={`color: ${color()}`}>Hello world! </text>
-        <view>{Math.random()}</view>
-      </view>
-      <view>
-        <text
+    <View class="index">
+      <View ref={myDiv}>
+        <Text style={`color: ${color()}`}>Hello world! </Text>
+        <View>{Math.random()}</View>
+      </View>
+      <View>
+        <Text
           class={cls()}
           classList={{
             orange: color() === 'red',
@@ -36,16 +37,16 @@ export default function Index() {
           }}
         >
           Hello world2!
-        </text>
-      </view>
-      <button onClick={() => setCls(styles['bold'])}>set class</button>
-      <button onClick={() => setColor('blue')}>set style</button>
+        </Text>
+      </View>
+      <Button onClick={() => setCls(styles['bold'])}>set class</Button>
+      <Button onClick={() => setColor('blue')}>set style</Button>
 
       <Counter count={0}></Counter>
-      <view>{Math.random()}</view>
-      {color() ? <icon type="success"></icon> : null}
-      <input type="text" use:model={[color, setColor]} />
-      <view id="portal"></view>
-    </view>
+      <View>{Math.random()}</View>
+      {color() ? <Icon type="success"></Icon> : null}
+      <Input type="text" use:model={[color, setColor]} />
+      <View id="portal"></View>
+    </View>
   )
 }

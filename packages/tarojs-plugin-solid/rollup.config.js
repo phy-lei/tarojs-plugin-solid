@@ -13,6 +13,7 @@ const base = {
         '@tarojs/runtime',
         '@tarojs/shared',
         '@tarojs/service',
+        '@tarojs/components'
       ],
     }),
     ts(),

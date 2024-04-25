@@ -32,6 +32,7 @@ module.exports = function (context, options = {}) {
           contextToCustomElements: true,
           wrapConditionals: true,
           generate: 'dom',
+          uniqueTransform: true,
           tagCollector: tag => {
             if (capitalize(toCamelCase(tag)) in internalComponents) {
               // 收集小程序模板中需要渲染的组件
