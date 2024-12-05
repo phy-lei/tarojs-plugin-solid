@@ -1,4 +1,4 @@
-<h1 align="center">Taro Plugin Solid</h1>
+<h1 align="center">Taro Plugin Solid（已合到taro4.x版本，优先使用taro官方版本）</h1>
 
 <p align="center">使用 Solid 开发小程序。</p>
 
